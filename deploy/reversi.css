@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+#reversi {
+    display: flex;
+}
+
+#sidebar {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    width: 220px;
+}
+
+#content {
+    display: flex;
+}
+
+canvas {
+
+}
