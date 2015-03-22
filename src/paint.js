@@ -1,15 +1,20 @@
-/*global module*/
+/*global module, document, require, Math*/
 /*jslint node: true*/
 "use strict";
 
-function paintChessBoardColor(context, boardLen, boardWrapperLen) {
+var settings = require("./settings.js"),
+    boardLen = settings.boardLen,
+    boardWrapperLen = settings.boardWrapperLen,
+    pieceLen = settings.pieceLen;
+
+function paintChessBoardColor(context) {
     context.fillStyle = "lightblue";
     context.fillRect(boardWrapperLen, boardWrapperLen, boardLen, boardLen);
 }
 
 module.exports = {
-    drawChessBoard: function(context, pieceLen, boardLen, boardWrapperLen) {
-        paintChessBoardColor(context, boardLen, boardWrapperLen);
+    drawEmptyBoard: function(context) {
+        paintChessBoardColor(context);
 
         context.lineWidth = 1.5;
         context.beginPath();
@@ -31,13 +36,15 @@ module.exports = {
         context.stroke();
     },
 
-    drawPiece: function(context, piece, pieceLen, boardWrapperLen, isBlack) {
+    // update
+
+    drawPiece: function(context, piece, isBlack) {
         if (piece !== null) {
-            var column = piece.column;
-            var row = piece.row;
-            var x = (column * pieceLen) + (pieceLen/2) + boardWrapperLen;
-            var y = (row * pieceLen) + (pieceLen/2) + boardWrapperLen;
-            var radius = (pieceLen/2) - (pieceLen/10);
+            var column = piece.column,
+                row = piece.row,
+                x = (column * pieceLen) + (pieceLen / 2) + boardWrapperLen,
+                y = (row * pieceLen) + (pieceLen / 2) + boardWrapperLen,
+                radius = (pieceLen / 2) - (pieceLen / 10);
 
             context.beginPath();
             context.arc(x, y, radius, 0, Math.PI * 2, false);
@@ -55,5 +62,30 @@ module.exports = {
             return !isBlack;
         }
         return isBlack;
+    },
+
+    getPieceFromEvent: function (event) {
+        var x, y;
+        if (event.pageX != undefined && event.pageY != undefined) {
+            x = event.pageX;
+            y = event.pageY;
+        }
+        else {
+            x = event.clientX + document.body.scrollLeft +
+                document.documentElement.scrollLeft;
+            y = event.clientY + document.body.scrollTop +
+                document.documentElement.scrollTop;
+        }
+
+        x -= (settings.beginCanvasX + boardWrapperLen);
+        y -= (settings.beginCanvasY + boardWrapperLen);
+
+        if (x < 0 || y < 0 || x > boardLen || y > boardLen) {
+            return null;
+        }
+        return {
+           row: Math.floor(y / pieceLen),
+           column: Math.floor(x / pieceLen)
+       };
     }
 };
