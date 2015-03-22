@@ -1,20 +1,23 @@
 var gulp = require('gulp'),
-    browserify = require("gulp-browserify"),
+    browserify = require("browserify"),
     closureCompiler = require('gulp-closure-compiler'),
     compilerTar = require('superstartup-closure-compiler'),
     del = require("del"),
+    transform = require('vinyl-transform'),
 
     paths = {
         scripts: "src/*.js",
         entryJs: "src/app.js"
     };
 
-gulp.task("compile", function () {
+gulp.task("prod", function () {
+    var browserified = transform(function(filename) {
+        var b = browserify(filename);
+        return b.bundle();
+      });
+
     gulp.src(paths.entryJs)
-        .pipe(browserify({
-            // insertGlobals : true,
-            debug : true
-        }))
+        .pipe(browserified)
         .pipe(closureCompiler({
             compilerPath: compilerTar.getPath(),
             fileName: 'reversi.js',
@@ -35,16 +38,35 @@ gulp.task("compile", function () {
                 // output_wrapper: '(function(){%output%})();',
                 // warning_level: 'VERBOSE'
             } }))
-        .pipe(gulp.dest('deploy'));
+        .pipe(gulp.dest('deploy/js'));
         // .pipe(gulp.dest('build/js'))
 });
 
+gulp.task("dev", function () {
+    var browserified = transform(function(filename) {
+        var b = browserify(filename);
+        return b.bundle();
+      });
+
+    gulp.src([paths.entryJs])
+        .pipe(browserified)
+        .pipe(closureCompiler({
+            compilerPath: compilerTar.getPath(),
+            fileName: 'reversi.js',
+            compilerFlags: {
+                debug: true,
+                language_in: "ECMASCRIPT5",
+                compilation_level: 'WHITESPACE_ONLY'
+            } }))
+        .pipe(gulp.dest('build/js'));
+});
+
 gulp.task('watch', function() {
-  gulp.watch(paths.scripts, ['compile']);
+  gulp.watch(paths.scripts, ['dev']);
 });
 
 gulp.task('scripts', ['clean'], function() {
-    del(["deploy/reversi.js" /*,"deploy/reversi.css"*/]);
+    del(["deploy/js" /*,"deploy/reversi.css"*/]);
 });
 
-gulp.task('default', ['compile', 'watch']);
+gulp.task('default', ['dev', 'watch']);

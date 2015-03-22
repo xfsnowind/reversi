@@ -1,2 +1,5 @@
 node_modules/
-deploy/*.js
+deploy/js
+deploy/css
+build/
+reversi.js.source
