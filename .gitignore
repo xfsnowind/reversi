@@ -3,3 +3,4 @@ deploy/js
 deploy/css
 build/
 reversi.js.source
+styles/main.css

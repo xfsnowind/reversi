@@ -2,22 +2,42 @@
     "name": "Reversi",
     "version": "0.0.1",
     "private": true,
-    "devDependencies": {
-        "gulp": "^3.8.11",
-        "browserify": "^9.0.3",
-        "vinyl-transform": "^1.0.0",
-        "gulp-closure-compiler": "~0.2.7",
-        "superstartup-closure-compiler": "~0.1.6",
-        "del": "latest"
-    },
-    "dependencies": {
-        "lazy.js": "~0.4.0",
-        "react": "^0.13.1",
-        "flux": "^2.0.1",
-        "immutable": "^3.6.2"
-    },
+
     "repository": {
         "type": "git",
         "url": "git@github.com:xfsnowind/reversi.git"
+    },
+
+    "devDependencies": {
+        "live-reload": "latest",
+        "browserify": "latest",
+        "reactify": "latest",
+        "closurecompiler": "latest",
+        "node-sass": "latest",
+        "autoprefixer": "latest",
+        "cssmin": "latest",
+        "del": "latest"
+    },
+    "dependencies": {
+        "react": "latest",
+        "flux": "latest",
+        "immutable": "latest"
+    },
+    "scripts": {
+        "env": "env",
+        "build:js": "browserify src/app.js | ccjs --compilation_level=WHITESPACE_ONLY > build/js/reversi.js",
+        "build:scss": "node-sass styles/main.scss styles/main.css",
+        "prod:css": "autoprefixer -b 'last 2 versions' style/main.css | cssmin > build/css/reversi.css",
+        "build": "npm run build:js && npm run build:scss && npm run build:css",
+
+        "build:scss": "node-sass styles/main.scss styles/main.css",
+        "prod:css": "autoprefixer -b 'last 2 versions' style/main.css | cssmin > deploy/css/reversi.css",
+        "prod:js": "browserify src/app.js | ccjs --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
+        "prod": "npm run prod:js"
+    },
+    "browserify": {
+        "transform": [
+            "reactify"
+        ]
     }
 }
