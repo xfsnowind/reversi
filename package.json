@@ -1,6 +1,6 @@
 {
     "name": "Reversi",
-    "version": "0.0.1",
+    "version": "0.0.1-SNAPSHOT",
     "private": true,
 
     "repository": {
@@ -25,15 +25,14 @@
     },
     "scripts": {
         "env": "env",
-        "build:js": "browserify src/app.js | ccjs --compilation_level=WHITESPACE_ONLY > build/js/reversi.js",
-        "build:scss": "node-sass styles/main.scss styles/main.css",
-        "prod:css": "autoprefixer -b 'last 2 versions' style/main.css | cssmin > build/css/reversi.css",
-        "build": "npm run build:js && npm run build:scss && npm run build:css",
 
-        "build:scss": "node-sass styles/main.scss styles/main.css",
-        "prod:css": "autoprefixer -b 'last 2 versions' style/main.css | cssmin > deploy/css/reversi.css",
+        "build:css": "node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' > build/css/reversi.css",
+        "build:js": "browserify src/app.js | ccjs --compilation_level=WHITESPACE_ONLY > build/js/reversi.js",
+        "build": "npm run build:js && npm run build:css",
+
+        "prod:css": "node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' | cssmin > deploy/css/reversi.css",
         "prod:js": "browserify src/app.js | ccjs --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
-        "prod": "npm run prod:js"
+        "prod": "npm run prod:js && npm run prod:css"
     },
     "browserify": {
         "transform": [
