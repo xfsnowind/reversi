@@ -20,6 +20,7 @@
         "watch": "^0.14.0",
         "http-server": "^0.8.0",
         "parallelshell": "^1.1.1",
+        "mkdirp": "^0.5.0",
         "del": "^1.1.1"
     },
     "dependencies": {
@@ -32,9 +33,10 @@
         "env": "env",
         "clean": "rimraf build/css/*.css build/js/*.js",
 
-        "build:css": "node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' > build/css/reversi.css",
-        "build:js": "browserify -o build/js/reversi.js src/app.js",
+        "build:css": "mkdirp build/css && node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' > build/css/reversi.css",
+        "build:js": "mkdirp build/js && browserify -o build/js/reversi.js src/app.js",
         "build": "npm run build:js && npm run build:css",
+
         "watch:js": "watch 'npm run build:js' src/",
         "watch:css": "watch 'npm run build:css' styles/",
         "watch": "npm run build:js && npm run build:css",
@@ -44,8 +46,8 @@
 
         "dev": "parallelshell 'npm run server -s' 'npm run live-reload -s' 'npm run watch -s'",
 
-        "prod:css": "node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' | cssmin > deploy/css/reversi.css",
-        "prod:js": "browserify src/app.js | ccjs --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
+        "prod:css": "mkdirp deploy/css && node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' | cssmin > deploy/css/reversi.css",
+        "prod:js": "mkdirp deploy/js && browserify src/app.js | ccjs --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
         "prod": "npm run prod:js && npm run prod:css"
     },
     "browserify": {
