@@ -9,26 +9,40 @@
     },
 
     "devDependencies": {
-        "live-reload": "latest",
-        "browserify": "latest",
-        "reactify": "latest",
-        "closurecompiler": "latest",
-        "node-sass": "latest",
-        "autoprefixer": "latest",
-        "cssmin": "latest",
-        "del": "latest"
+        "live-reload": "^1.1.0",
+        "browserify": "^9.0.3",
+        "reactify": "^1.1.0",
+        "closurecompiler": "^1.5.1",
+        "node-sass": "^2.1.1",
+        "autoprefixer": "^5.1.0",
+        "cssmin": "^0.4.3",
+        "rimraf": "^2.3.2",
+        "watch": "^0.14.0",
+        "http-server": "^0.8.0",
+        "parallelshell": "^1.1.1",
+        "del": "^1.1.1"
     },
     "dependencies": {
-        "react": "latest",
-        "flux": "latest",
-        "immutable": "latest"
+        "react": "^0.13.1",
+        "object-assign": "^2.0.0",
+        "flux": "^2.0.1",
+        "immutable": "^3.7.1"
     },
     "scripts": {
         "env": "env",
+        "clean": "rimraf build/css/*.css build/js/*.js",
 
         "build:css": "node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' > build/css/reversi.css",
-        "build:js": "browserify src/app.js | ccjs --compilation_level=WHITESPACE_ONLY > build/js/reversi.js",
+        "build:js": "browserify -o build/js/reversi.js src/app.js",
         "build": "npm run build:js && npm run build:css",
+        "watch:js": "watch 'npm run build:js' src/",
+        "watch:css": "watch 'npm run build:css' styles/",
+        "watch": "npm run build:js && npm run build:css",
+
+        "live-reload": "live-reload --port 9091 build/",
+        "server": "http-server -p 9090 build/",
+
+        "dev": "parallelshell 'npm run server -s' 'npm run live-reload -s' 'npm run watch -s'",
 
         "prod:css": "node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' | cssmin > deploy/css/reversi.css",
         "prod:js": "browserify src/app.js | ccjs --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",

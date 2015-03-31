@@ -1,10 +1,14 @@
 var React = require("react"),
-    dispatcher = require("../dispatcher/ReversiDispatcher");
+    ContentSection = require("./ContentSection.react"),
+    SidebarSection = require("./SidebarSection.react");
 
 var ReversiApp = React.createClass({
     render: function () {
         return (
-            <div className="ReversiApp">test</div>
+            <div className="app">
+                <ContentSection />
+                <SidebarSection />
+            </div>
             );
     }
 });
