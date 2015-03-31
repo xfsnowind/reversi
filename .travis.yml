@@ -1,0 +1,4 @@
+install: npm install
+script: "npm run prod"
+before_install: npm run test
+language: javascript
