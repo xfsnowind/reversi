@@ -39,7 +39,7 @@
 
         "watch:js": "watch 'npm run build:js' src/",
         "watch:css": "watch 'npm run build:css' styles/",
-        "watch": "npm run build:js && npm run build:css",
+        "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
 
         "live-reload": "live-reload --port 9091 build/",
         "server": "http-server -p 9090 build/",

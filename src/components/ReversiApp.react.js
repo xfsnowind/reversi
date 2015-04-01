@@ -6,8 +6,8 @@ var ReversiApp = React.createClass({
     render: function () {
         return (
             <div className="app">
-                <ContentSection />
                 <SidebarSection />
+                <ContentSection />
             </div>
             );
     }

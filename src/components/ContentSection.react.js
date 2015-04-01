@@ -22,7 +22,9 @@ var ContentSection = React.createClass({
         }
         return (
             <div className="content">
-                {rowListItems}
+                <div className="board">
+                    {rowListItems}
+                </div>
             </div>
         );
     }

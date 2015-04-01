@@ -1,6 +1,7 @@
 var React = require("react"),
     Immutable = require("immutable"),
-    SettingsStore = require("../Stores/SettingsStore");
+    SettingsStore = require("../Stores/SettingsStore"),
+    NodeSection = require("./NodeSection.react");
 
 function getStateFromStores() {
     return Immutable.Map({
@@ -15,7 +16,7 @@ var RowSection = React.createClass({
     render: function() {
         var columnItems = [];
         for (var i = 0; i < this.state.get("columnNum"); i++) {
-            columnItems.push(<div className="node"></div>);
+            columnItems.push(<NodeSection />);
         }
         return (
             <div className="row">
