@@ -4,7 +4,7 @@ var React = require("react"),
 var SidebarSection = React.createClass({
     render: function() {
         return (
-            <div></div>
+            <div className="sidebar"></div>
         );
     }
 });

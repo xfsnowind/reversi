@@ -4,7 +4,7 @@ var React = require("react"),
 
 function getStateFromStores() {
     return Immutable.Map({
-        columnNum: SettingsStore.getRowColumnLength()
+        "columnNum": SettingsStore.getRowColumnLength()
     });
 }
 var RowSection = React.createClass({

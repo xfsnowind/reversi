@@ -1,6 +1,6 @@
 node_modules/
-deploy/js
+build/css
+build/js
 deploy/css
-build/
+deploy/js
 reversi.js.source
-styles/main.css

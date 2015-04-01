@@ -1,3 +1,18 @@
+$node-size: 50px;
+
 body {
     font-size: 100%;
+}
+
+div.row {
+    margin: 0;
+    padding:0;
+    height: $node-size;
+    display: inline-table;
+
+    div.node {
+        width: $node-size;
+        height: $node-size;
+        border: 1px solid black;
+    }
 }

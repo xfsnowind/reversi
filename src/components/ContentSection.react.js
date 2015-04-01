@@ -6,7 +6,7 @@ var React = require("react"),
 
 function getStateFromStores() {
     return Immutable.Map({
-        rowLength: SettingsStore.getRowColumnLength()
+        "rowLength": SettingsStore.getRowColumnLength()
     });
 }
 

@@ -47,7 +47,7 @@
         "dev": "parallelshell 'npm run server -s' 'npm run live-reload -s' 'npm run watch -s'",
 
         "prod:css": "mkdirp deploy/css && node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' | cssmin > deploy/css/reversi.css",
-        "prod:js": "mkdirp deploy/js && browserify src/app.js | ccjs --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
+        "prod:js": "mkdirp deploy/js && browserify src/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
         "prod": "npm run prod:js && npm run prod:css"
     },
     "browserify": {
