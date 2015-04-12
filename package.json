@@ -33,7 +33,7 @@
         "env": "env",
         "clean": "rimraf build/css/*.css build/js/*.js",
 
-        "build:css": "mkdirp build/css && node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' > build/css/reversi.css",
+        "build:css": "mkdirp build/css && node-sass styles/main.scss build/css/reversi.css",
         "build:js": "mkdirp build/js && browserify -o build/js/reversi.js src/app.js",
         "build": "npm run build:js && npm run build:css",
 
