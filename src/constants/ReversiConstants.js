@@ -1,6 +1,17 @@
-var Immutable = require("immutable");
+var Immutable = require("immutable"),
+    keyMirror = require("keymirror");
 
 module.exports = Immutable.Map({
-    "WHITE": "WHITE",
-    "BLACK": "BLACK"
+    "GridStatus": Immutable.Map(
+        keyMirror({
+            "WHITE": null,
+            "BLACK": null,
+            "EMPTY": null
+        })
+    ),
+    "ActionTypes": Immutable.Map(
+        keyMirror({
+            CLICK_THREAD: null
+        })
+    )
 });

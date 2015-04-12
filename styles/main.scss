@@ -1,6 +1,5 @@
 $node-size: 50px;
 
-
 div.app {
     display: flex;
 
@@ -26,9 +25,25 @@ div.app {
                     border-left: 1px solid black;
                     border-right: 1px solid black;
                     background-color: lightblue;
+
+                    div.piece {
+                        width: 0;
+                        height: 0;
+                        padding: 23px;
+                        margin: 1px;
+                        margin-left: 2px;
+                        border-radius: 23px;
+                    }
+
+                    .WHITE {
+                        background-color: white;
+                    }
+
+                    .BLACK {
+                        background-color: black;
+                    }
                 }
             }
         }
     }
 }
-

@@ -1,25 +1,32 @@
 var React = require("react"),
     Immutable = require("immutable"),
     dispatcher = require("../dispatcher/ReversiDispatcher"),
-    SettingsStore = require("../Stores/SettingsStore"),
+    GameStore = require("../Stores/GameStore"),
     RowSection = require("./RowSection.react");
 
 function getStateFromStores() {
-    return Immutable.Map({
-        "rowLength": SettingsStore.getRowColumnLength()
-    });
+    return {data: Immutable.Map({"board": GameStore.getBoard()})};
 }
 
 var ContentSection = React.createClass({
+
     getInitialState: function() {
         return getStateFromStores();
     },
 
+    componentDidMount: function() {
+        GameStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        GameStore.removeChangeListener(this._onChange);
+    },
+
     render: function() {
-        var rowListItems = [];
-        for (var i = 0; i < this.state.get("rowLength"); i++) {
-            rowListItems.push(<RowSection />);
-        }
+        var board = this.state.data.get("board"),
+            rowListItems = board.map(function(row) {
+                return <RowSection row={row}/>;
+            });
         return (
             <div className="content">
                 <div className="board">
@@ -27,6 +34,10 @@ var ContentSection = React.createClass({
                 </div>
             </div>
         );
+    },
+
+    _onChange: function() {
+        this.setState(getStateFromStores());
     }
 });
 

@@ -1,22 +1,16 @@
-var React = require("react"),
+var React = require("react/addons"),
     Immutable = require("immutable"),
     GameStore = require("../Stores/GameStore"),
+    GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
+    PlayerActionCreators = require("../actions/PlayerActionCreators"),
     PieceSection = require("./PieceSection.react");
 
 var GridSection = React.createClass({
-    getInitialState: function() {
-        return Immutable.Map({
-            "player": null
-        });
-    },
 
     render: function() {
-        var piece;
-        if (this.state.get("player")) {
-            piece = <PieceSection player={this.state.get("player")}/>;
-        }
+        var piece = <PieceSection player={this.props.grid.get("value")}/>;
         return (
-            <div className="node" onClick={_onClick}>
+            <div className="node" onClick={this._onClick}>
                 {piece}
             </div>
         );
@@ -24,7 +18,9 @@ var GridSection = React.createClass({
 
     _onClick: function(event) {
         var player = GameStore.getPlayer();
-        this.setState(this.state.set("player", player));
+        if (Immutable.is(this.props.grid.get("value"), GridStatus.get("EMPTY"))) {
+            PlayerActionCreators.clickThread(this.props.grid);
+        }
     }
 });
 

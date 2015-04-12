@@ -1,23 +1,14 @@
 var React = require("react"),
     Immutable = require("immutable"),
-    SettingsStore = require("../Stores/SettingsStore"),
     GridSection = require("./GridSection.react");
 
-function getStateFromStores() {
-    return Immutable.Map({
-        "columnNum": SettingsStore.getRowColumnLength()
-    });
-}
 var RowSection = React.createClass({
-    getInitialState: function() {
-        return getStateFromStores();
-    },
 
     render: function() {
-        var columnItems = [];
-        for (var i = 0; i < this.state.get("columnNum"); i++) {
-            columnItems.push(<GridSection />);
-        }
+        var row = this.props.row,
+            columnItems = row.map(function(grid) {
+                return <GridSection grid={grid} />;
+            });
         return (
             <div className="row">
                 {columnItems}
