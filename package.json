@@ -34,20 +34,20 @@
         "env": "env",
         "clean": "rimraf build/css/*.css build/js/*.js",
 
-        "build:css": "mkdirp build/css && node-sass styles/main.scss build/css/reversi.css",
+        "build:css": "mkdirp build/css && node-sass < styles/main.scss | autoprefixer > build/css/reversi.css",
         "build:js": "mkdirp build/js && browserify -o build/js/reversi.js src/app.js",
         "build": "npm run build:js && npm run build:css",
 
-        "watch:js": "watch 'npm run build:js' src/",
-        "watch:css": "watch 'npm run build:css' styles/",
-        "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
+        "watch:js": "watch \"npm run build:js\" src/",
+        "watch:css": "watch \"npm run build:css\" styles/",
+        "watch": "parallelshell \"npm run watch:js\" \"npm run watch:css\"",
 
         "live-reload": "live-reload --port 9091 build/",
         "server": "http-server -p 9090 build/",
 
-        "dev": "parallelshell 'npm run server -s' 'npm run live-reload -s' 'npm run watch -s'",
+        "dev": "parallelshell \"npm run server -s\" \"npm run live-reload -s\" \"npm run watch -s\"",
 
-        "prod:css": "mkdirp deploy/css && node-sass < styles/main.scss | autoprefixer -b 'last 2 versions' | cssmin > deploy/css/reversi.css",
+        "prod:css": "mkdirp deploy/css && node-sass < styles/main.scss | autoprefixer | cssmin > deploy/css/reversi.css",
         "prod:js": "mkdirp deploy/js && browserify src/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
         "prod": "npm run prod:js && npm run prod:css"
     },
