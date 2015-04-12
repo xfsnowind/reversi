@@ -12,6 +12,13 @@ var CHANGE_EVENT = "change";
 var _player = null,
     _board = [];
 
+function changePlayer(player) {
+    if (Immutable.is(player, GridStatus.get("WHITE"))) {
+        return GridStatus.get("BLACK");
+    }
+    return GridStatus.get("WHITE");
+}
+
 var GameStore = assign({}, EventEmitter.prototype, {
     init: function() {
         var rowColLength = SettingsStore.getRowColumnLength();
@@ -51,7 +58,7 @@ GameStore.dispatchToken = Dispatcher.register(function(action) {
     switch (action.type) {
         case ActionTypes.get("CLICK_THREAD"):
             var content = action.content;
-            _player = GridStatus.get("BLACK");
+            _player = changePlayer(_player);
             _board = _board.setIn([content.get("x"), content.get("y"), "value"], _player);
             GameStore.emitChange(CHANGE_EVENT);
             break;
