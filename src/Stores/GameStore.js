@@ -26,6 +26,17 @@ var GameStore = assign({}, EventEmitter.prototype, {
         _board = Immutable.fromJS(_board);
     },
 
+    fillPiece: function(board, x, y, value) {
+        return board.setIn([x, y, "value"], value);
+    },
+
+    fillPieces: function(board, pieces) {
+        var immutablePieces = Immutable.fromJS(pieces);
+        return immutablePieces.reduce(function(preVal, currVal) {
+            return GameStore.fillPiece(preVal, currVal.get("x"), currVal.get("y"), currVal.get("value"));
+        }, board);
+    },
+
     emitChange: function() {
         this.emit(CHANGE_EVENT);
     },
@@ -48,11 +59,12 @@ var GameStore = assign({}, EventEmitter.prototype, {
 });
 
 GameStore.dispatchToken = Dispatcher.register(function(action) {
+    var content = action.content;
+
     switch (action.type) {
         case ActionTypes.get("CLICK_THREAD"):
-            var content = action.content;
             _player = GridStatus.get("BLACK");
-            _board = _board.setIn([content.get("x"), content.get("y"), "value"], _player);
+            _board = GameStore.fillPiece(_board, content.get("x"), content.get("y"), _player);
             GameStore.emitChange(CHANGE_EVENT);
             break;
 
