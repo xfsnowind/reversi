@@ -87,6 +87,19 @@ var BoardUtil = {
             }
         }
         return Lazy(availableGrids).compact().uniq().value();
+    },
+
+    clearAvailableGrids: function(board) {
+        var availableGrids = [];
+        for(var i = 0; i < rowColLength; i++) {
+            for(var j = 0; j < rowColLength; j++) {
+                var grid = board.getIn([i, j]);
+                if (BoardUtil.verifyGridStatus(grid, GridStatus.get("AVAILABLE"))) {
+                    availableGrids.push(grid.set("value", EMPTY));
+                }
+            }
+        }
+        return BoardUtil.fillPieces(board, availableGrids);
     }
 };
 

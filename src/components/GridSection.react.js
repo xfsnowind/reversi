@@ -8,9 +8,16 @@ var React = require("react/addons"),
 var GridSection = React.createClass({
 
     render: function() {
-        var piece = <PieceSection player={this.props.grid.get("value")}/>;
+        var piece = <PieceSection player={this.props.grid.get("value")}/>,
+            className = "node";
+        if (Immutable.is(this.props.grid.get("value"), GridStatus.get("AVAILABLE"))) {
+            className = "node AVAILABLE";
+        } else {
+            className = "node No-AVAILABLE";
+        }
+
         return (
-            <div className="node" onClick={this._onClick}>
+            <div className={className} onClick={this._onClick}>
                 {piece}
             </div>
         );
@@ -18,7 +25,7 @@ var GridSection = React.createClass({
 
     _onClick: function(event) {
         var player = ContentStore.getPlayer();
-        if (Immutable.is(this.props.grid.get("value"), GridStatus.get("EMPTY"))) {
+        if (Immutable.is(this.props.grid.get("value"), GridStatus.get("AVAILABLE"))) {
             PlayerActionCreators.clickThread(this.props.grid);
         }
     }

@@ -24,7 +24,6 @@ div.app {
                     border: 2px solid black;
                     border-left: 1px solid black;
                     border-right: 1px solid black;
-                    background-color: lightblue;
 
                     div.piece {
                         width: 0;
@@ -42,6 +41,14 @@ div.app {
                     .BLACK {
                         background-color: black;
                     }
+                }
+
+                .No-AVAILABLE {
+                    background-color: lightblue;
+                }
+
+                .AVAILABLE {
+                    background-color: lightgreen;
                 }
             }
         }
