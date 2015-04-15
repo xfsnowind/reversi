@@ -1,11 +1,11 @@
 var React = require("react"),
     Immutable = require("immutable"),
     dispatcher = require("../dispatcher/ReversiDispatcher"),
-    GameStore = require("../Stores/GameStore"),
+    ContentStore = require("../Stores/ContentStore"),
     RowSection = require("./RowSection.react");
 
 function getStateFromStores() {
-    return {data: Immutable.Map({"board": GameStore.getBoard()})};
+    return {data: Immutable.Map({"board": ContentStore.getBoard()})};
 }
 
 var ContentSection = React.createClass({
@@ -15,11 +15,11 @@ var ContentSection = React.createClass({
     },
 
     componentDidMount: function() {
-        GameStore.addChangeListener(this._onChange);
+        ContentStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function() {
-        GameStore.removeChangeListener(this._onChange);
+        ContentStore.removeChangeListener(this._onChange);
     },
 
     render: function() {

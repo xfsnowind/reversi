@@ -1,6 +1,6 @@
 var React = require("react/addons"),
     Immutable = require("immutable"),
-    GameStore = require("../Stores/GameStore"),
+    ContentStore = require("../Stores/ContentStore"),
     GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
     PlayerActionCreators = require("../actions/PlayerActionCreators"),
     PieceSection = require("./PieceSection.react");
@@ -17,7 +17,7 @@ var GridSection = React.createClass({
     },
 
     _onClick: function(event) {
-        var player = GameStore.getPlayer();
+        var player = ContentStore.getPlayer();
         if (Immutable.is(this.props.grid.get("value"), GridStatus.get("EMPTY"))) {
             PlayerActionCreators.clickThread(this.props.grid);
         }
