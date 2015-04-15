@@ -24,7 +24,6 @@ var GridSection = React.createClass({
     },
 
     _onClick: function(event) {
-        var player = ContentStore.getPlayer();
         if (Immutable.is(this.props.grid.get("value"), GridStatus.get("AVAILABLE"))) {
             PlayerActionCreators.clickThread(this.props.grid);
         }

@@ -90,7 +90,8 @@ var BoardUtil = {
     },
 
     clearAvailableGrids: function(board) {
-        var availableGrids = [];
+        var rowColLength = SettingsStore.getRowColumnLength(),
+            availableGrids = [];
         for(var i = 0; i < rowColLength; i++) {
             for(var j = 0; j < rowColLength; j++) {
                 var grid = board.getIn([i, j]);
