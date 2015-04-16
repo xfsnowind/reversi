@@ -10,4 +10,5 @@ var ContentSection = React.createClass({
             );
     }
 });
+
 module.exports = ContentSection;

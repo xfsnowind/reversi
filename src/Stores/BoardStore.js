@@ -13,7 +13,7 @@ var CHANGE_EVENT = "change",
     BLACK = GridStatus.get("BLACK");
 
 var _player = null,
-    _history = [],
+    _history = Immutable.fromJS([]),
     _board = [];
 
 function init() {
@@ -24,6 +24,8 @@ function init() {
                       {row: halfRowColLength - 1, col: halfRowColLength, value: BLACK},
                       {row: halfRowColLength, col: halfRowColLength, value: WHITE}];
     _player = WHITE;
+    _board = [];
+    _history = Immutable.fromJS([]);
     for (var i = 0; i < rowColLength; i++) {
         var row = [];
         for (var j = 0; j < rowColLength; j++) {
@@ -34,7 +36,7 @@ function init() {
     _board = BoardUtil.fillPieces(Immutable.fromJS(_board), initPieces);
     var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
     _board = BoardUtil.fillPieces(_board, availableGrids);
-    _history = Immutable.fromJS(_history.push(_board));
+    _history = _history.push(_board);
 }
 
 var BoardStore = assign({}, EventEmitter.prototype, {
@@ -89,8 +91,13 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             } else {
                 _board = BoardUtil.fillPieces(_board, availableGrids);
             }
+            _history = _history.push(_board);
             BoardStore.emitChange(CHANGE_EVENT);
             break;
+
+        case ActionTypes.get("START_THREAD"):
+            init();
+            BoardStore.emitChange(CHANGE_EVENT);
 
         default:
     }

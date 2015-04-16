@@ -24,7 +24,8 @@ module.exports = Immutable.Map({
     ),
     "ActionTypes": Immutable.Map(
         keyMirror({
-            "CLICK_THREAD": null
+            "CLICK_THREAD": null,
+            "START_THREAD": null
         })
     )
 });

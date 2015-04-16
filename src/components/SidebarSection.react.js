@@ -2,6 +2,7 @@ var React = require("react"),
     Immutable = require("immutable"),
     dispatcher = require("../dispatcher/ReversiDispatcher"),
     BoardStore = require("../stores/BoardStore"),
+    SidebarActionCreators = require("../actions/SidebarActionCreators"),
     Constants = require("../constants/ReversiConstants"),
     GridStatus = Constants.get("GridStatus");
 
@@ -26,7 +27,6 @@ var SidebarSection = React.createClass({
         BoardStore.removeChangeListener(this._onChange);
     },
 
- 
     render: function() {
         var numWhite = this.state.data.get("numWhite"),
             numBlack = this.state.data.get("numBlack");
@@ -40,8 +40,15 @@ var SidebarSection = React.createClass({
                     "Black: "
                     {numBlack}
                 </div>
+                <div>
+                    <input type="button" onClick={this._start} value="New Game"/>
+                </div>
             </div>
         );
+    },
+
+    _start: function() {
+        SidebarActionCreators.startGame();
     },
 
     _onChange: function() {
