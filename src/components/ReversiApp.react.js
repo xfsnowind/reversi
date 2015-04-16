@@ -1,5 +1,5 @@
 var React = require("react"),
-    ContentSection = require("./ContentSection.react"),
+    BoardSection = require("./BoardSection.react"),
     SidebarSection = require("./SidebarSection.react");
 
 var ReversiApp = React.createClass({
@@ -7,7 +7,7 @@ var ReversiApp = React.createClass({
         return (
             <div className="app">
                 <SidebarSection />
-                <ContentSection />
+                <BoardSection />
             </div>
             );
     }

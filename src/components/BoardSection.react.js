@@ -8,7 +8,7 @@ function getStateFromStores() {
     return {data: Immutable.Map({"board": ContentStore.getBoard()})};
 }
 
-var ContentSection = React.createClass({
+var BoardSection = React.createClass({
 
     getInitialState: function() {
         return getStateFromStores();
@@ -41,4 +41,4 @@ var ContentSection = React.createClass({
     }
 });
 
-module.exports = ContentSection;
+module.exports = BoardSection;
