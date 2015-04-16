@@ -31,8 +31,7 @@ function init() {
         _board.push(Immutable.fromJS(row));
     }
     _board = BoardUtil.fillPieces(Immutable.fromJS(_board), initPieces);
-    var availableGrids = BoardUtil.getAvailableGrids(_board, _player);
-    _board = BoardUtil.fillPieces(_board, availableGrids);
+    _board = BoardUtil.fillAvailableGrids(_board, _player);
 }
 
 var ContentStore = assign({}, EventEmitter.prototype, {
@@ -65,8 +64,7 @@ ContentStore.dispatchToken = Dispatcher.register(function(action) {
             _board = BoardUtil.fillPiece(_board, content.get("row"), content.get("col"), _player);
             _player = BoardUtil.changePlayer(_player);
             _board = BoardUtil.clearAvailableGrids(_board);
-            var availableGrids = BoardUtil.getAvailableGrids(_board, _player);
-            _board = BoardUtil.fillPieces(_board, availableGrids);
+            _board = BoardUtil.fillAvailableGrids(_board, _player);
             ContentStore.emitChange(CHANGE_EVENT);
             break;
 
