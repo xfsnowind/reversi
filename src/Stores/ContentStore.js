@@ -62,8 +62,9 @@ ContentStore.dispatchToken = Dispatcher.register(function(action) {
     switch (action.type) {
         case ActionTypes.get("CLICK_THREAD"):
             _board = BoardUtil.fillPiece(_board, content.get("row"), content.get("col"), _player);
-            _player = BoardUtil.changePlayer(_player);
             _board = BoardUtil.clearAvailableGrids(_board);
+            _board = BoardUtil.reverseGrids(content, _board, _player);
+            _player = BoardUtil.changePlayer(_player);
             _board = BoardUtil.fillAvailableGrids(_board, _player);
             ContentStore.emitChange(CHANGE_EVENT);
             break;

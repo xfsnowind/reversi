@@ -42,8 +42,10 @@ var BoardUtil = {
     checkReverseDirection: function(grid, board, player, direction, returnGrid) {
         var row = grid.get("row") - direction.row,
             col = grid.get("col") - direction.col;
+
         if (BoardUtil.isGridLegal(row, col)) {
             var reverseDirectionGrid = board.getIn([row, col]);
+
             if (BoardUtil.verifyGridStatus(reverseDirectionGrid, EMPTY)) {
                 return false;
             } else if (BoardUtil.verifyGridStatus(reverseDirectionGrid, player)) {
@@ -53,7 +55,7 @@ var BoardUtil = {
                 return true;
             } else if (BoardUtil.verifyGridStatus(reverseDirectionGrid, BoardUtil.changePlayer(player))) {
                 if (returnGrid) {
-                    returnGrid.push(reverseDirectionGrid);
+                    returnGrid.push(reverseDirectionGrid.set("value", player));
                 }
                 return BoardUtil.checkReverseDirection(reverseDirectionGrid, board, player, direction, returnGrid);
             }
@@ -61,26 +63,29 @@ var BoardUtil = {
         return false;
     },
 
-    getAvailableGridsGivenDirection: function(grid, board, player, direction) {
+    getAvailableGridsGivenDirection: function(grid, board, player, direction, ifReverse) {
         var row = grid.get("row") + direction.row,
             col = grid.get("col") + direction.col,
             directionGrid = board.getIn([row, col]);
 
+        if (ifReverse) {
+            return BoardUtil.checkReverseDirection(grid, board, player, direction, []);
+        }
+
         if (BoardUtil.isGridLegal(row, col) &&
             BoardUtil.verifyGridStatus(directionGrid, EMPTY) &&
             BoardUtil.checkReverseDirection(grid, board, player, direction, null)) {
-            return directionGrid.set("value", GridStatus.get("AVAILABLE"));
+            return [directionGrid.set("value", GridStatus.get("AVAILABLE"))];
         }
-        return null;
     },
 
-    getAvailableGridsGivenGrid: function(grid, board, player) {
+    getAvailableGridsGivenGrid: function(grid, board, player, ifReverse) {
         return Direction.reduce(function(availableGrids, direction) {
-            availableGrids.push(BoardUtil.getAvailableGridsGivenDirection(grid, board, player, direction));
-            return availableGrids;
+            return availableGrids.concat(BoardUtil.getAvailableGridsGivenDirection(grid, board, player, direction, ifReverse));
         }, []);
     },
 
+    /* Get the available grids and fill the status to them. */
     fillAvailableGrids: function(board, player) {
         var rowColLength = SettingsStore.getRowColumnLength(),
             reversePlayer = BoardUtil.changePlayer(player),
@@ -89,12 +94,20 @@ var BoardUtil = {
             for(var j = 0; j < rowColLength; j++) {
                 var grid = board.getIn([i, j]);
                 if (BoardUtil.verifyGridStatus(grid, reversePlayer)) {
-                    availableGrids = availableGrids.concat(BoardUtil.getAvailableGridsGivenGrid(grid, board, player));
+                    availableGrids = availableGrids.concat(BoardUtil.getAvailableGridsGivenGrid(grid, board, player, false));
                 }
             }
         }
         var uniqueGrids = Lazy(availableGrids).compact().uniq().value();
         return BoardUtil.fillPieces(board, uniqueGrids);
+    },
+
+    /* Get the grids those should be reversed and reverse them. */
+    reverseGrids: function(piece, board, player) {
+        var reversedGrids = BoardUtil.getAvailableGridsGivenGrid(piece, board, player, true);
+        var puredGrids = Lazy(reversedGrids).compact().uniq().value();
+        console.log(puredGrids, player);
+        return BoardUtil.fillPieces(board, puredGrids);
     },
 
     clearAvailableGrids: function(board) {
@@ -109,7 +122,8 @@ var BoardUtil = {
             }
         }
         return BoardUtil.fillPieces(board, availableGrids);
-    }
+    },
+
 };
 
 module.exports = BoardUtil;
