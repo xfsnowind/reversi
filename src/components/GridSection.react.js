@@ -1,6 +1,6 @@
 var React = require("react/addons"),
     Immutable = require("immutable"),
-    ContentStore = require("../Stores/ContentStore"),
+    BoardStore = require("../Stores/BoardStore"),
     GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
     PlayerActionCreators = require("../actions/PlayerActionCreators"),
     PieceSection = require("./PieceSection.react");

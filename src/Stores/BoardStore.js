@@ -13,6 +13,7 @@ var CHANGE_EVENT = "change",
     BLACK = GridStatus.get("BLACK");
 
 var _player = null,
+    _history = [],
     _board = [];
 
 function init() {
@@ -31,10 +32,12 @@ function init() {
         _board.push(Immutable.fromJS(row));
     }
     _board = BoardUtil.fillPieces(Immutable.fromJS(_board), initPieces);
-    _board = BoardUtil.fillAvailableGrids(_board, _player);
+    var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+    _board = BoardUtil.fillPieces(_board, availableGrids);
+    _history = Immutable.fromJS(_history.push(_board));
 }
 
-var ContentStore = assign({}, EventEmitter.prototype, {
+var BoardStore = assign({}, EventEmitter.prototype, {
     emitChange: function() {
         this.emit(CHANGE_EVENT);
     },
@@ -51,12 +54,26 @@ var ContentStore = assign({}, EventEmitter.prototype, {
         return _board;
     },
 
+    getNumberPieces: function(player) {
+        var rowColLength = SettingsStore.getRowColumnLength(),
+            num = 0;
+        for(var i = 0; i < rowColLength; i++) {
+            for(var j = 0; j < rowColLength; j++) {
+                var grid = _board.getIn([i, j]);
+                if (BoardUtil.verifyGridStatus(grid, player)) {
+                    num++;
+                }
+            }
+        }
+        return num;
+    },
+
     getPlayer: function() {
         return _player;
     }
 });
 
-ContentStore.dispatchToken = Dispatcher.register(function(action) {
+BoardStore.dispatchToken = Dispatcher.register(function(action) {
     var content = action.content;
 
     switch (action.type) {
@@ -65,8 +82,14 @@ ContentStore.dispatchToken = Dispatcher.register(function(action) {
             _board = BoardUtil.clearAvailableGrids(_board);
             _board = BoardUtil.reverseGrids(content, _board, _player);
             _player = BoardUtil.changePlayer(_player);
-            _board = BoardUtil.fillAvailableGrids(_board, _player);
-            ContentStore.emitChange(CHANGE_EVENT);
+            var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+            if (availableGrids.length === 0) {
+                _player = BoardUtil.changePlayer(_player);
+                // availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+            } else {
+                _board = BoardUtil.fillPieces(_board, availableGrids);
+            }
+            BoardStore.emitChange(CHANGE_EVENT);
             break;
 
         default:
@@ -75,4 +98,4 @@ ContentStore.dispatchToken = Dispatcher.register(function(action) {
 
 init();
 
-module.exports = ContentStore;
+module.exports = BoardStore;

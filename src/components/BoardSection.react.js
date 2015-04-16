@@ -1,11 +1,11 @@
 var React = require("react"),
     Immutable = require("immutable"),
     dispatcher = require("../dispatcher/ReversiDispatcher"),
-    ContentStore = require("../Stores/ContentStore"),
+    BoardStore = require("../Stores/BoardStore"),
     RowSection = require("./RowSection.react");
 
 function getStateFromStores() {
-    return {data: Immutable.Map({"board": ContentStore.getBoard()})};
+    return {data: Immutable.Map({"board": BoardStore.getBoard()})};
 }
 
 var BoardSection = React.createClass({
@@ -15,11 +15,11 @@ var BoardSection = React.createClass({
     },
 
     componentDidMount: function() {
-        ContentStore.addChangeListener(this._onChange);
+        BoardStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function() {
-        ContentStore.removeChangeListener(this._onChange);
+        BoardStore.removeChangeListener(this._onChange);
     },
 
     render: function() {

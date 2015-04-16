@@ -98,8 +98,7 @@ var BoardUtil = {
                 }
             }
         }
-        var uniqueGrids = Lazy(availableGrids).compact().uniq().value();
-        return BoardUtil.fillPieces(board, uniqueGrids);
+        return Lazy(availableGrids).compact().uniq().value();
     },
 
     /* Get the grids those should be reversed and reverse them. */
