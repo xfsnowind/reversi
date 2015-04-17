@@ -105,7 +105,6 @@ var BoardUtil = {
     reverseGrids: function(piece, board, player) {
         var reversedGrids = BoardUtil.getAvailableGridsGivenGrid(piece, board, player, true);
         var puredGrids = Lazy(reversedGrids).compact().uniq().value();
-        console.log(puredGrids, player);
         return BoardUtil.fillPieces(board, puredGrids);
     },
 

@@ -7,6 +7,12 @@ module.exports = {
         Dispatcher.dispatch({
             "type": ActionTypes.get("START_THREAD")
         });
+    },
+
+    regret: function() {
+        Dispatcher.dispatch({
+            "type": ActionTypes.get("REGRET_THREAD")
+        });
     }
 };
 

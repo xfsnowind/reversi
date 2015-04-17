@@ -13,19 +13,22 @@ var CHANGE_EVENT = "change",
     BLACK = GridStatus.get("BLACK");
 
 var _player = null,
-    _history = Immutable.fromJS([]),
+    _history = null,
+    _player_history = null,
     _board = [];
 
 function init() {
     var rowColLength = SettingsStore.getRowColumnLength(),
         halfRowColLength = rowColLength / 2,
         initPieces = [{row: halfRowColLength - 1, col: halfRowColLength - 1, value: WHITE},
-                      {row: halfRowColLength, col: halfRowColLength - 1, value: BLACK},
-                      {row: halfRowColLength - 1, col: halfRowColLength, value: BLACK},
-                      {row: halfRowColLength, col: halfRowColLength, value: WHITE}];
+                      {row: halfRowColLength,     col: halfRowColLength - 1, value: BLACK},
+                      {row: halfRowColLength - 1, col: halfRowColLength,     value: BLACK},
+                      {row: halfRowColLength,     col: halfRowColLength,     value: WHITE}];
     _player = WHITE;
     _board = [];
     _history = Immutable.fromJS([]);
+    _player_history = Immutable.fromJS([]);
+
     for (var i = 0; i < rowColLength; i++) {
         var row = [];
         for (var j = 0; j < rowColLength; j++) {
@@ -33,10 +36,10 @@ function init() {
         }
         _board.push(Immutable.fromJS(row));
     }
+
     _board = BoardUtil.fillPieces(Immutable.fromJS(_board), initPieces);
     var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
     _board = BoardUtil.fillPieces(_board, availableGrids);
-    _history = _history.push(_board);
 }
 
 var BoardStore = assign({}, EventEmitter.prototype, {
@@ -72,6 +75,10 @@ var BoardStore = assign({}, EventEmitter.prototype, {
 
     getPlayer: function() {
         return _player;
+    },
+
+    canRegret: function() {
+        return !_history.isEmpty();
     }
 });
 
@@ -80,9 +87,13 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
 
     switch (action.type) {
         case ActionTypes.get("CLICK_THREAD"):
+            _history = _history.push(_board);
+            _player_history = _player_history.push(_player);
+
             _board = BoardUtil.fillPiece(_board, content.get("row"), content.get("col"), _player);
             _board = BoardUtil.clearAvailableGrids(_board);
             _board = BoardUtil.reverseGrids(content, _board, _player);
+
             _player = BoardUtil.changePlayer(_player);
             var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
             if (availableGrids.length === 0) {
@@ -91,13 +102,24 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             } else {
                 _board = BoardUtil.fillPieces(_board, availableGrids);
             }
-            _history = _history.push(_board);
-            BoardStore.emitChange(CHANGE_EVENT);
+            BoardStore.emitChange();
             break;
 
         case ActionTypes.get("START_THREAD"):
             init();
-            BoardStore.emitChange(CHANGE_EVENT);
+            BoardStore.emitChange();
+            break;
+
+        case ActionTypes.get("REGRET_THREAD"):
+            if(BoardStore.canRegret()) {
+                _board = _history.last();
+                _history = _history.pop();
+                _player = _player_history.last();
+                _player_history = _player_history.pop();
+                console.log(_player_history.count());
+                BoardStore.emitChange();
+            }
+            break;
 
         default:
     }

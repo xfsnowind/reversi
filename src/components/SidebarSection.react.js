@@ -10,6 +10,8 @@ function getStateFromStores() {
     return {data: Immutable.Map({
         "numWhite": BoardStore.getNumberPieces(GridStatus.get("WHITE")),
         "numBlack": BoardStore.getNumberPieces(GridStatus.get("BLACK")),
+        "canRegret": BoardStore.canRegret(),
+        "player": BoardStore.getPlayer(),
     })};
 }
 
@@ -29,7 +31,16 @@ var SidebarSection = React.createClass({
 
     render: function() {
         var numWhite = this.state.data.get("numWhite"),
-            numBlack = this.state.data.get("numBlack");
+            numBlack = this.state.data.get("numBlack"),
+            regretDisable = !this.state.data.get("canRegret"),
+            player = this.state.data.get("player"),
+            regretButton;
+
+        if (regretDisable) {
+            regretButton = <input type="Button" onClick={this._regret} disabled value="Regret"/>
+        } else {
+            regretButton = <input type="Button" onClick={this._regret} value="Regret"/>
+        }
         return (
             <div className="sidebar">
                 <div>
@@ -41,14 +52,23 @@ var SidebarSection = React.createClass({
                     {numBlack}
                 </div>
                 <div>
+                    "Player: "
+                    {player}
+                </div>
+                <div>
                     <input type="button" onClick={this._start} value="New Game"/>
                 </div>
+                <div>{regretButton}</div>
             </div>
         );
     },
 
     _start: function() {
         SidebarActionCreators.startGame();
+    },
+
+    _regret: function() {
+        SidebarActionCreators.regret();
     },
 
     _onChange: function() {
