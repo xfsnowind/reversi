@@ -59,22 +59,53 @@ var BoardStore = assign({}, EventEmitter.prototype, {
         return _board;
     },
 
-    getNumberPieces: function(player) {
+    getNumberPieces: function() {
         var rowColLength = SettingsStore.getRowColumnLength(),
-            num = 0;
+            whitePlayer = 0,
+            blackPlayer = 0;
+
         for(var i = 0; i < rowColLength; i++) {
             for(var j = 0; j < rowColLength; j++) {
                 var grid = _board.getIn([i, j]);
-                if (BoardUtil.verifyGridStatus(grid, player)) {
-                    num++;
+                if (BoardUtil.verifyGridStatus(grid, WHITE)) {
+                    whitePlayer++;
+                }
+                if (BoardUtil.verifyGridStatus(grid, BLACK)) {
+                    blackPlayer++;
                 }
             }
         }
-        return num;
+        return [whitePlayer, blackPlayer];
     },
 
     getPlayer: function() {
         return _player;
+    },
+
+    gameOver: function() {
+        /*when the board is full, nomore one players' piece*/
+        var rowColLength = SettingsStore.getRowColumnLength(),
+            emptyNum = 0;
+
+        for(var i = 0; i < rowColLength; i++) {
+            for(var j = 0; j < rowColLength; j++) {
+                var grid = _board.getIn([i, j]);
+                if (BoardUtil.verifyGridStatus(grid, GridStatus.get("EMPTY"))) {
+                    emptyNum++;
+                }
+            }
+        }
+
+        if (0 === emptyNum) {
+            return true;
+        } else {
+            var currentAvailableGrids = BoardUtil.fillAvailableGrids(_board, _player),
+                reverseAvailableGrids = BoardUtil.fillAvailableGrids(_board, BoardUtil.changePlayer(_player));
+            if (0 === currentAvailableGrids.length && 0 === reverseAvailableGrids.length) {
+                return true;
+            }
+            return false
+        }
     },
 
     canRegret: function() {

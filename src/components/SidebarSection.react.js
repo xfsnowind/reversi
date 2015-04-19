@@ -8,10 +8,11 @@ var React = require("react"),
 
 function getStateFromStores() {
     return {data: Immutable.Map({
-        "numWhite": BoardStore.getNumberPieces(GridStatus.get("WHITE")),
-        "numBlack": BoardStore.getNumberPieces(GridStatus.get("BLACK")),
+        "numWhite": BoardStore.getNumberPieces()[0],
+        "numBlack": BoardStore.getNumberPieces()[1],
         "canRegret": BoardStore.canRegret(),
         "player": BoardStore.getPlayer(),
+        "gameOver": BoardStore.gameOver(),
     })};
 }
 
@@ -34,6 +35,8 @@ var SidebarSection = React.createClass({
             numBlack = this.state.data.get("numBlack"),
             regretDisable = !this.state.data.get("canRegret"),
             player = this.state.data.get("player"),
+            gameOver = this.state.data.get("gameOver"),
+            gameOverText,
             regretButton;
 
         if (regretDisable) {
@@ -41,6 +44,18 @@ var SidebarSection = React.createClass({
         } else {
             regretButton = <input type="Button" onClick={this._regret} value="Regret"/>
         }
+
+        if (gameOver) {
+            var winner = null;
+            if (numWhite > numBlack) {
+                winner = "White";
+            } else {
+                winner = "Black"
+            }
+
+            gameOverText = <div>Game Over: {winner} wins!</div>
+        }
+
         return (
             <div className="sidebar">
                 <div>
@@ -59,6 +74,7 @@ var SidebarSection = React.createClass({
                     <input type="button" onClick={this._start} value="New Game"/>
                 </div>
                 <div>{regretButton}</div>
+                {gameOverText}
             </div>
         );
     },
