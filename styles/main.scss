@@ -1,4 +1,22 @@
-$node-size: 50px;
+$node-size:     3.6em;
+
+$base03:        #002b36;
+$base02:        #073642;
+$base01:        #586e75;
+$base00:        #657b83;
+$base0:         #839496;
+$base1:         #93a1a1;
+$base2:         #eee8d5;
+$base3:         #fdf6e3;
+$yellow:        #b58900;
+$orange:        #cb4b16;
+$red:           #dc322f;
+$magenta:       #d33682;
+$violet:        #6c71c4;
+$blue:          #268bd2;
+$cyan:          #2aa198;
+$green:         #859900;
+$success-green: #5cb85c;
 
 div.app {
     display: flex;
@@ -10,45 +28,119 @@ div.app {
     div.content {
         margin-top: 2em;
 
+        div.topbar {
+            font-weight: bold;
+            margin-left: 4em;
+            height: $node-size;
+
+            span.topbar-text {
+                float: left;
+                width: 33%;
+            }
+
+            .center {
+                text-align: center;
+            }
+
+            .right {
+                float: right;
+                width: auto;
+            }
+        }
+
+        div.footbar {
+            margin-top: 2em;
+
+            .regret {
+                float: right;
+                background-color: $red;
+                border-color: $orange;
+            }
+
+            .start {
+                float: left;
+                background-color: $success-green;
+                border-color: $green;
+            }
+
+            input {
+                color: #fff;
+                display: inline-block;
+                padding: 6px 12px;
+                margin-bottom: 0;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                user-select: none;
+                background-image: none;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+        }
+
         div.board {
 
-            div.row {
-                margin: 0;
-                padding:0;
+            .x-markers {
+                display: flex;
                 height: $node-size;
-                display:flex;
 
-                div.node {
+                .x-marker {
                     width: $node-size;
                     height: $node-size;
-                    border: 2px solid black;
-                    border-left: 1px solid black;
-                    border-right: 1px solid black;
-
-                    div.piece {
-                        width: 0;
-                        height: 0;
-                        padding: 23px;
-                        margin: 1px;
-                        margin-left: 2px;
-                        border-radius: 23px;
-                    }
-
-                    .WHITE {
-                        background-color: white;
-                    }
-
-                    .BLACK {
-                        background-color: black;
-                    }
+                    text-align: center;
+                    vertical-align: middle;
+                    line-height: $node-size;
+                    font-weight: bold;
                 }
+            }
 
-                .No-AVAILABLE {
-                    background-color: lightskyblue;
-                }
+            div.board-content {
 
-                .AVAILABLE {
-                    background-color: lightgrey;
+                div.row {
+                    margin: 0;
+                    padding: 0;
+                    height: $node-size;
+                    display: flex;
+
+                    strong.y-marker {
+                        width: $node-size;
+                        text-align: center;
+                        vertical-align: middle;
+                        line-height: $node-size;
+                    }
+
+                    div.node {
+                        width: $node-size;
+                        height: $node-size;
+                        border: 1px solid black;
+
+                        div.piece {
+                            width: 0;
+                            height: 0;
+                            padding: 23px;
+                            margin: 1px;
+                            margin-left: 2px;
+                            border-radius: 23px;
+                        }
+
+                        .WHITE {
+                            background-color: white;
+                        }
+
+                        .BLACK {
+                            background-color: black;
+                        }
+                    }
+
+                    .No-AVAILABLE {
+                        background-color: lightskyblue;
+                    }
+
+                    .AVAILABLE {
+                        background-color: lightgrey;
+                    }
                 }
             }
         }

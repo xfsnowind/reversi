@@ -1,12 +1,15 @@
 var React = require("react"),
+    Lazy = require("lazy.js"),
     Immutable = require("immutable"),
-    dispatcher = require("../dispatcher/ReversiDispatcher"),
     BoardStore = require("../Stores/BoardStore"),
+    SettingsStore = require("../stores/SettingsStore"),
     RowSection = require("./RowSection.react");
 
 function getStateFromStores() {
     return {data: Immutable.Map({"board": BoardStore.getBoard()})};
 }
+
+var markers = "abcdefghijklmnopqrstuvwxyz";
 
 var BoardSection = React.createClass({
 
@@ -24,12 +27,23 @@ var BoardSection = React.createClass({
 
     render: function() {
         var board = this.state.data.get("board"),
+            rowColLength = SettingsStore.getRowColumnLength(),
+            i = 0,
+            markerItems = Lazy(markers).take(rowColLength)
+                                       .map(function(a) {
+                                           return <div className="x-marker">{a.toUpperCase()}</div>;
+                                       })
+                                       .value(),
             rowListItems = board.map(function(row) {
-                return <RowSection row={row}/>;
+                i++;
+                return <RowSection row={row} id={i}/>;
             });
+        markerItems = [<div className="x-marker"> </div>].concat(markerItems);
+
         return (
-            <div className="content">
-                <div className="board">
+            <div className="board">
+                <div className="x-markers">{markerItems}</div>
+                <div className="board-content">
                     {rowListItems}
                 </div>
             </div>

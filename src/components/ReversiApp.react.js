@@ -1,12 +1,11 @@
 var React = require("react"),
-    ContentSection = require("./ContentSection.react"),
-    SidebarSection = require("./SidebarSection.react");
+    ContentSection = require("./ContentSection.react");
 
 var ReversiApp = React.createClass({
     render: function () {
         return (
             <div className="app">
-                <SidebarSection />
+                <div className="sidebar hidden-xs"></div>
                 <ContentSection />
             </div>
             );

@@ -5,12 +5,13 @@ var React = require("react"),
 var RowSection = React.createClass({
 
     render: function() {
-        var row = this.props.row,
-            columnItems = row.map(function(grid) {
-                return <GridSection grid={grid} />;
+        var columnItems = this.props.row.map(function(grid) {
+                return <GridSection grid={grid}/>;
             });
+
         return (
             <div className="row">
+                <strong className="y-marker">{this.props.id}</strong>
                 {columnItems}
             </div>
         );
