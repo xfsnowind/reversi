@@ -40,16 +40,16 @@ var TopbarSection = React.createClass({
                 winner = "Black"
             }
 
-            middleText = <span className="topbar-text">Game Over: {winner} wins!</span>;
+            middleText = <span className="topbar-text center">Game Over: {winner} wins!</span>;
         } else {
-            middleText = <span className="topbar-text">Player:  {player}</span>;
+            middleText = <span className="topbar-text center">Player:  {player}</span>;
         }
 
         return (
             <div className="topbar">
                 <span className="topbar-text">White: {numWhite}</span>
                 {middleText}
-                <span className="topbar-text">Black: {numBlack}</span>
+                <span className="topbar-text right">Black: {numBlack}</span>
             </div>
         );
     },
