@@ -10,7 +10,7 @@ var RowSection = React.createClass({
 
     render: function() {
         var columnItems = this.props.row.map(function(grid) {
-                return <GridSection grid={grid} />;
+                return <GridSection grid={grid} key={grid.get("row") + ", " + grid.get("col")}/>;
             });
 
         return (

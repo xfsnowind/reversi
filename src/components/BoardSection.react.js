@@ -36,7 +36,7 @@ var BoardSection = React.createClass({
                                        .value(),
             rowListItems = board.map(function(row) {
                 i++;
-                return <RowSection row={row} id={i} />;
+                return <RowSection row={row} id={i} key={row.getIn([0, "row"])} />;
             });
         markerItems = [<div className="x-marker"> </div>].concat(markerItems);
 
