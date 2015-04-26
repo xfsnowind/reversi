@@ -1,7 +1,7 @@
 var React = require("react"),
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
-    SidebarActionCreators = require("../actions/SidebarActionCreators");
+    FootbarActionCreators = require("../actions/FootbarActionCreators");
 
 function getStateFromStores() {
     return {data: Immutable.Map({
@@ -42,11 +42,11 @@ var FootbarSection = React.createClass({
     },
 
     _start: function() {
-        SidebarActionCreators.startGame();
+        FootbarActionCreators.startGame();
     },
 
     _regret: function() {
-        SidebarActionCreators.regret();
+        FootbarActionCreators.regret();
     },
 
     _onChange: function() {

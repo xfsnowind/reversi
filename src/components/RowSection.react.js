@@ -4,9 +4,13 @@ var React = require("react"),
 
 var RowSection = React.createClass({
 
+    shouldComponentUpdate: function(nextProps) {
+        return !Immutable.is(nextProps.row, this.props.row);
+    },
+
     render: function() {
         var columnItems = this.props.row.map(function(grid) {
-                return <GridSection grid={grid}/>;
+                return <GridSection grid={grid} />;
             });
 
         return (

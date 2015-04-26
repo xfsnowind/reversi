@@ -147,7 +147,6 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
                 _history = _history.pop();
                 _player = _player_history.last();
                 _player_history = _player_history.pop();
-                console.log(_player_history.count());
                 BoardStore.emitChange();
             }
             break;

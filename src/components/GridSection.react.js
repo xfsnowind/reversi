@@ -1,4 +1,4 @@
-var React = require("react/addons"),
+var React = require("react"),
     Immutable = require("immutable"),
     BoardStore = require("../Stores/BoardStore"),
     GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
