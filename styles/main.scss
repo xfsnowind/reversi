@@ -140,11 +140,13 @@ div.flipper-container {
         }
 
         div.white {
-            background: white;
+            background: black;
+            background: radial-gradient(circle at 33% 33%, lightpink, #000);
        }
 
         div.black {
             background: black;
+            background: radial-gradient(circle at 33% 33%, #5cabff, #000);
         }
     }
 }
