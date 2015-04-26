@@ -6,6 +6,7 @@ var React = require("react"),
 function getStateFromStores() {
     return {data: Immutable.Map({
         "canRegret": BoardStore.canRegret(),
+        "gameOver": BoardStore.gameOver(),
     })};
 }
 
@@ -25,9 +26,10 @@ var FootbarSection = React.createClass({
 
     render: function() {
         var regretDisable = !this.state.data.get("canRegret"),
+            gameOver = this.state.data.get("gameOver"),
             regretButton;
 
-        if (regretDisable) {
+        if (regretDisable || gameOver) {
             regretButton = <input type="Button" className="regret btn btn-danger" onClick={this._regret} disabled="disabled" value="Regret"/>
         } else {
             regretButton = <input type="Button" className="regret btn btn-danger" onClick={this._regret} value="Regret"/>

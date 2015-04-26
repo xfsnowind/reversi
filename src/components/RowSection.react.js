@@ -3,11 +3,6 @@ var React = require("react"),
     GridSection = require("./GridSection.react");
 
 var RowSection = React.createClass({
-
-    shouldComponentUpdate: function(nextProps) {
-        return !Immutable.is(nextProps.row, this.props.row);
-    },
-
     render: function() {
         var columnItems = this.props.row.map(function(grid) {
                 return <GridSection grid={grid} key={grid.get("row") + ", " + grid.get("col")}/>;

@@ -1,15 +1,15 @@
 var React = require("react"),
-    Topbar = require("./TopbarSection.react"),
-    Footbar = require("./FootbarSection.react"),
+    TopbarSection = require("./TopbarSection.react"),
+    FootbarSection = require("./FootbarSection.react"),
     BoardSection = require("./BoardSection.react");
 
 var ContentSection = React.createClass({
     render: function () {
         return (
             <div className="content">
-                <Topbar />
+                <TopbarSection />
                 <BoardSection />
-                <Footbar />
+                <FootbarSection />
             </div>
             );
     }

@@ -42,7 +42,7 @@ var TopbarSection = React.createClass({
 
             middleText = <span className="topbar-text center">Game Over: {winner} wins!</span>;
         } else {
-            middleText = <span className="topbar-text center">Player:  {player}</span>;
+            middleText = <span className="topbar-text center">Player: {player}</span>;
         }
 
         return (

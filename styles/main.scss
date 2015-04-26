@@ -2,11 +2,6 @@
 
 $node-size:     3.6em;
 
-$orange:        #cb4b16;
-$red:           #dc322f;
-$green:         #859900;
-$success-green: #5cb85c;
-
 div.app {
     display: flex;
 
@@ -18,6 +13,7 @@ div.app {
         margin-top: 2em;
 
         div.topbar {
+            font-size: 120%;
             font-weight: bold;
             margin-left: 4em;
             height: $node-size;
@@ -42,15 +38,11 @@ div.app {
 
             .regret {
                 float: right;
-                background-color: $red;
-                border-color: $orange;
             }
 
             .start {
                 margin-left: $node-size;
                 float: left;
-                background-color: $success-green;
-                border-color: $green;
             }
         }
 
@@ -137,7 +129,7 @@ div.flipper-container {
         div.piece {
             width: 100%;
             height: 100%;
-            border-radius: 23px;
+            border-radius: 50%;
             backface-visibility: hidden;
             position: absolute;
             transform-style: preserve-3d;
