@@ -1,30 +1,30 @@
 var React = require("react"),
     Immutable = require("immutable"),
-    BoardStore = require("../Stores/BoardStore"),
-    GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
+    AVAILABLE = require("../constants/ReversiConstants").get("GridStatus").get("AVAILABLE"),
     PlayerActionCreators = require("../actions/PlayerActionCreators"),
     PieceSection = require("./PieceSection.react");
 
 var GridSection = React.createClass({
 
+    shouldComponentUpdate: function(nextProps, nextState) {
+        return !Immutable.is(nextProps.grid, this.props.grid);
+    },
+
     render: function() {
-        var piece = <PieceSection player={this.props.grid.get("value")}/>,
-            className = "node";
-        if (Immutable.is(this.props.grid.get("value"), GridStatus.get("AVAILABLE"))) {
-            className = "node AVAILABLE";
-        } else {
-            className = "node No-AVAILABLE";
+        var className = "node";
+        if (Immutable.is(this.props.grid.get("value"), AVAILABLE)) {
+            className = "node available";
         }
 
         return (
             <div className={className} onClick={this._onClick}>
-                {piece}
+                <PieceSection player={this.props.grid.get("value")} />
             </div>
         );
     },
 
     _onClick: function(event) {
-        if (Immutable.is(this.props.grid.get("value"), GridStatus.get("AVAILABLE"))) {
+        if (Immutable.is(this.props.grid.get("value"), AVAILABLE)) {
             PlayerActionCreators.clickThread(this.props.grid);
         }
     }
