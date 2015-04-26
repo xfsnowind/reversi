@@ -53,7 +53,7 @@ div.app {
                 border-color: $green;
             }
 
-            input {
+            input[type="button"] {
                 color: #fff;
                 display: inline-block;
                 padding: 6px 12px;
@@ -67,6 +67,13 @@ div.app {
                 background-image: none;
                 border: 1px solid transparent;
                 border-radius: 4px;
+            }
+
+            input[disabled] {
+                pointer-events: none;
+                opacity: 0.65;
+                box-shadow: none;
+                cursor: not-allowed;
             }
         }
 
