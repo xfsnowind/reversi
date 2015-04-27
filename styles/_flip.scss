@@ -32,7 +32,7 @@ div.flipper-container {
         div.piece {
             width: 100%;
             height: 100%;
-            border-radius: 23px;
+            border-radius: 50%;
             backface-visibility: hidden;
             position: absolute;
             transform-style: preserve-3d;
@@ -43,11 +43,13 @@ div.flipper-container {
         }
 
         div.white {
-            background: white;
+            background: black;
+            background: radial-gradient(circle at 33% 33%, lightpink, #000);
        }
 
         div.black {
             background: black;
+            background: radial-gradient(circle at 33% 33%, #5cabff, #000);
         }
     }
 }

@@ -35,7 +35,7 @@
         "env": "env",
         "clean": "rimraf build/css/*.css build/js/*.js",
 
-        "build:css": "mkdirp build/css && node-sass < styles/main.scss | autoprefixer > build/css/reversi.css",
+        "build:css": "mkdirp build/css && node-sass --include-path styles < styles/main.scss | autoprefixer > build/css/reversi.css",
         "build:js": "mkdirp build/js && browserify -o build/js/reversi.js src/app.js",
         "build": "npm run build:js && npm run build:css",
 
@@ -48,7 +48,7 @@
 
         "dev": "parallelshell \"npm run server -s\" \"npm run live-reload -s\" \"npm run watch -s\"",
 
-        "prod:css": "mkdirp deploy/css && node-sass < styles/main.scss | autoprefixer | cssmin > deploy/css/reversi.css",
+        "prod:css": "mkdirp deploy/css && node-sass --include-path styles < styles/main.scss | autoprefixer | cssmin > deploy/css/reversi.css",
         "prod:js": "mkdirp deploy/js && browserify src/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=ADVANCED_OPTIMIZATIONS > deploy/js/reversi.js",
         "prod": "npm run prod:js && npm run prod:css"
     },
