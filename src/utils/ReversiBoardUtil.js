@@ -1,4 +1,4 @@
-var Immutable = require("Immutable"),
+var Immutable = require("immutable"),
     Lazy = require("lazy.js"),
     SettingsStore = require("../stores/SettingsStore"),
     Constants = require("../constants/ReversiConstants"),

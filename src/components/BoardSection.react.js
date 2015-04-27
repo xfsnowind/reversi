@@ -1,7 +1,7 @@
 var React = require("react"),
     Lazy = require("lazy.js"),
     Immutable = require("immutable"),
-    BoardStore = require("../Stores/BoardStore"),
+    BoardStore = require("../stores/BoardStore"),
     SettingsStore = require("../stores/SettingsStore"),
     RowSection = require("./RowSection.react");
 
