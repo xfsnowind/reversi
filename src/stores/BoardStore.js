@@ -129,7 +129,10 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
             if (availableGrids.length === 0) {
                 _player = BoardUtil.changePlayer(_player);
-                // availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+                availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+                if (availableGrids.length != 0) {
+                    _board = BoardUtil.fillPieces(_board, availableGrids);
+                }
             } else {
                 _board = BoardUtil.fillPieces(_board, availableGrids);
             }
