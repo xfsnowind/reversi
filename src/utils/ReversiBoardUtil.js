@@ -86,10 +86,11 @@ var BoardUtil = {
     },
 
     /* Get the available grids and fill the status to them. */
-    fillAvailableGrids: function(board, player) {
+    allAvailableGrids: function(board, player) {
         var rowColLength = SettingsStore.getRowColumnLength(),
             reversePlayer = BoardUtil.changePlayer(player),
             availableGrids = [];
+
         for(var i = 0; i < rowColLength; i++) {
             for(var j = 0; j < rowColLength; j++) {
                 var grid = board.getIn([i, j]);
@@ -103,8 +104,9 @@ var BoardUtil = {
 
     /* Get the grids those should be reversed and reverse them. */
     reverseGrids: function(piece, board, player) {
-        var reversedGrids = BoardUtil.getAvailableGridsGivenGrid(piece, board, player, true);
-        var puredGrids = Lazy(reversedGrids).compact().uniq().value();
+        var reversedGrids = BoardUtil.getAvailableGridsGivenGrid(piece, board, player, true),
+            puredGrids = Lazy(reversedGrids).compact().uniq().value();
+
         return BoardUtil.fillPieces(board, puredGrids);
     },
 

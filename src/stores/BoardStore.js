@@ -10,7 +10,9 @@ var EventEmitter = require('events').EventEmitter,
 
 var CHANGE_EVENT = "change",
     WHITE = GridStatus.get("WHITE"),
-    BLACK = GridStatus.get("BLACK");
+    BLACK = GridStatus.get("BLACK"),
+    AVAILABLE = GridStatus.get("AVAILABLE"),
+    EMPTY = GridStatus.get("EMPTY");
 
 var _player = null,
     _history = null,
@@ -38,7 +40,7 @@ function init() {
     }
 
     _board = BoardUtil.fillPieces(Immutable.fromJS(_board), initPieces);
-    var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+    var availableGrids = BoardUtil.allAvailableGrids(_board, _player);
     _board = BoardUtil.fillPieces(_board, availableGrids);
 }
 
@@ -90,7 +92,8 @@ var BoardStore = assign({}, EventEmitter.prototype, {
         for(var i = 0; i < rowColLength; i++) {
             for(var j = 0; j < rowColLength; j++) {
                 var grid = _board.getIn([i, j]);
-                if (BoardUtil.verifyGridStatus(grid, GridStatus.get("EMPTY"))) {
+                if (BoardUtil.verifyGridStatus(grid, EMPTY) ||
+                    BoardUtil.verifyGridStatus(grid, AVAILABLE)) {
                     emptyNum++;
                 }
             }
@@ -99,12 +102,10 @@ var BoardStore = assign({}, EventEmitter.prototype, {
         if (0 === emptyNum) {
             return true;
         } else {
-            var currentAvailableGrids = BoardUtil.fillAvailableGrids(_board, _player),
-                reverseAvailableGrids = BoardUtil.fillAvailableGrids(_board, BoardUtil.changePlayer(_player));
-            if (0 === currentAvailableGrids.length && 0 === reverseAvailableGrids.length) {
-                return true;
-            }
-            return false
+            var cleanBoard = BoardUtil.clearAvailableGrids(_board),
+                currentAvailableGrids = BoardUtil.allAvailableGrids(cleanBoard, _player),
+                reverseAvailableGrids = BoardUtil.allAvailableGrids(cleanBoard, BoardUtil.changePlayer(_player));
+            return 0 == currentAvailableGrids.length && 0 == reverseAvailableGrids.length;
         }
     },
 
@@ -126,10 +127,11 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             _board = BoardUtil.reverseGrids(content, _board, _player);
 
             _player = BoardUtil.changePlayer(_player);
-            var availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+            var availableGrids = BoardUtil.allAvailableGrids(_board, _player);
             if (availableGrids.length === 0) {
                 _player = BoardUtil.changePlayer(_player);
-                availableGrids = BoardUtil.fillAvailableGrids(_board, _player);
+                _board = BoardUtil.clearAvailableGrids(_board);
+                availableGrids = BoardUtil.allAvailableGrids(_board, _player);
                 if (availableGrids.length != 0) {
                     _board = BoardUtil.fillPieces(_board, availableGrids);
                 }
