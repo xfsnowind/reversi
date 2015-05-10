@@ -1,94 +1,15 @@
-@import "flip";
+@import "_vars";
+@import "_board";
+@import "_grid";
+@import "_flip";
+@import "_sidebar";
+@import "_topbar";
+@import "_footbar";
 
-$node-size:     3.6em;
-
-div.app {
+.app {
     display: flex;
 
-    div.sidebar {
-        width: 20%;
-    }
-
-    div.content {
+    .content {
         margin-top: 2em;
-
-        div.topbar {
-            font-size: 120%;
-            font-weight: bold;
-            margin-left: 4em;
-            height: $node-size;
-
-            span.topbar-text {
-                float: left;
-                width: 33%;
-            }
-
-            .center {
-                text-align: center;
-            }
-
-            span.right {
-                float: right;
-                width: auto;
-            }
-        }
-
-        div.footbar {
-            margin-top: 2em;
-
-            .regret {
-                float: right;
-            }
-
-            .start {
-                margin-left: $node-size;
-                float: left;
-            }
-        }
-
-        div.board {
-
-            .x-markers {
-                display: flex;
-                height: $node-size;
-
-                .x-marker {
-                    width: $node-size;
-                    height: $node-size;
-                    text-align: center;
-                    vertical-align: middle;
-                    line-height: $node-size;
-                    font-weight: bold;
-                }
-            }
-
-            div.board-content {
-
-                div.row {
-                    margin: 0;
-                    padding: 0;
-                    height: $node-size;
-                    display: flex;
-
-                    strong.y-marker {
-                        width: $node-size;
-                        text-align: center;
-                        vertical-align: middle;
-                        line-height: $node-size;
-                    }
-
-                    div.node {
-                        width: $node-size;
-                        height: $node-size;
-                        border: 1px solid black;
-                        background-color: lightskyblue;
-                    }
-
-                    div.available {
-                        background-color: lightgrey;
-                    }
-                }
-            }
-        }
     }
 }

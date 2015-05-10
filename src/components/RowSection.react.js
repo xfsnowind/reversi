@@ -9,8 +9,8 @@ var RowSection = React.createClass({
             });
 
         return (
-            <div className="row">
-                <strong className="y-marker">{this.props.id}</strong>
+            <div className="board__row">
+                <strong className="board__y-marker">{this.props.id}</strong>
                 {columnItems}
             </div>
         );

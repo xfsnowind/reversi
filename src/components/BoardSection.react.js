@@ -31,19 +31,19 @@ var BoardSection = React.createClass({
             i = 0,
             markerItems = Lazy(markers).take(rowColLength)
                                        .map(function(a) {
-                                           return <div key={"x-marker" + a} className="x-marker">{a.toUpperCase()}</div>;
+                                           return <div key={"x-marker" + a} className="board__x-marker">{a.toUpperCase()}</div>;
                                        })
                                        .value(),
             rowListItems = board.map(function(row) {
                 i++;
                 return <RowSection row={row} id={i} key={"row" + row.getIn([0, "row"])} />;
             });
-        markerItems = [<div key="x-marker0" className="x-marker"> </div>].concat(markerItems);
+        markerItems = [<div key="x-marker0" className="board__x-marker"> </div>].concat(markerItems);
 
         return (
             <div className="board">
-                <div className="x-markers">{markerItems}</div>
-                <div className="board-content">
+                <div className="board__x-markers">{markerItems}</div>
+                <div className="board__content">
                     {rowListItems}
                 </div>
             </div>

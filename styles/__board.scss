@@ -1,0 +1,32 @@
+.board {
+    .board__x-markers {
+        display: flex;
+        height: $node-size;
+
+        .board__x-marker {
+            width: $node-size;
+            height: $node-size;
+            text-align: center;
+            vertical-align: middle;
+            line-height: $node-size;
+            font-weight: bold;
+        }
+    }
+
+    .board__content {
+
+        .board__row {
+            margin: 0;
+            padding: 0;
+            height: $node-size;
+            display: flex;
+
+            .board__y-marker {
+                width: $node-size;
+                text-align: center;
+                vertical-align: middle;
+                line-height: $node-size;
+            }
+       }
+    }
+}

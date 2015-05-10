@@ -1,0 +1,15 @@
+.grid {
+    width: $node-size;
+    height: $node-size;
+    border: 1px solid black;
+    background-color: lightskyblue;
+    padding: 1px;
+}
+
+.grid--available {
+    width: $node-size;
+    height: $node-size;
+    border: 1px solid black;
+    background-color: lightgrey;
+}
+

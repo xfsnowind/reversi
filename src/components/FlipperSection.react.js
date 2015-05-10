@@ -5,11 +5,9 @@ var FlipperSection = React.createClass({
        var player = this.props.player.toLowerCase();
 
         return (
-            <div className="flipper-container">
-                <div className="flipper">
-                    <div className={"white piece " + (player == "white" ? "front" : "back")}> </div>
-                    <div className={"black piece " + (player == "black" ? "front" : "back")}> </div>
-                </div>
+            <div className="flipper">
+                <div className={"filpper__piece flipper__white " + (player == "white" ? "flipper__front" : "flipper__back")}> </div>
+                <div className={"filpper__piece flipper__black " + (player == "black" ? "flipper__front" : "flipper__back")}> </div>
             </div>
         );
     }

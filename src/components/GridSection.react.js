@@ -11,9 +11,9 @@ var GridSection = React.createClass({
     },
 
     render: function() {
-        var className = "node";
+        var className = "grid";
         if (Immutable.is(this.props.grid.get("value"), AVAILABLE)) {
-            className = "node available";
+            className = "grid--available";
         }
 
         return (
