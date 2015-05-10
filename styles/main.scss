@@ -1,15 +1,15 @@
 @import "_vars";
+@import "_button";
+@import "_portrait";
+@import "_landscape";
 @import "_board";
 @import "_grid";
 @import "_flip";
-@import "_sidebar";
-@import "_topbar";
-@import "_footbar";
 
 .app {
     display: flex;
 
     .content {
-        margin-top: 2em;
+        max-width: 32.5em;
     }
 }

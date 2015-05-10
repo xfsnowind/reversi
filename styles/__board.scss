@@ -1,11 +1,18 @@
 .board {
+    padding-top: $node-size / 2;
+
     .board__x-markers {
         display: flex;
+        width: 100%;
+        max-height: $node-size;
+        min-height: $node-size;
         height: $node-size;
 
         .board__x-marker {
+            max-width: $node-size;
             width: $node-size;
-            height: $node-size;
+            min-width: $node-size;
+            height: 100%;
             text-align: center;
             vertical-align: middle;
             line-height: $node-size;
@@ -13,20 +20,19 @@
         }
     }
 
-    .board__content {
+    .board__row {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: flex;
 
-        .board__row {
-            margin: 0;
-            padding: 0;
-            height: $node-size;
-            display: flex;
-
-            .board__y-marker {
-                width: $node-size;
-                text-align: center;
-                vertical-align: middle;
-                line-height: $node-size;
-            }
-       }
+        .board__y-marker {
+            max-width: $node-size;
+            width: $node-size;
+            min-width: $node-size;
+            text-align: center;
+            vertical-align: middle;
+            line-height: $node-size;
+        }
     }
 }

@@ -30,14 +30,14 @@ var FootbarSection = React.createClass({
             regretButton;
 
         if (regretDisable || gameOver) {
-            regretButton = <input type="Button" className="footbar__right btn btn-danger" onClick={this._regret} disabled="disabled" value="Regret"/>
+            regretButton = <input type="Button" className="footbar__right button button--danger" onClick={this._regret} disabled="disabled" value="Regret"/>
         } else {
-            regretButton = <input type="Button" className="footbar__right btn btn-danger" onClick={this._regret} value="Regret"/>
+            regretButton = <input type="Button" className="footbar__right button button--danger" onClick={this._regret} value="Regret"/>
         }
 
         return (
             <div className="footbar">
-                <input type="button" className="footbar__left btn btn-success" onClick={this._start} value="New Game"/>
+                <input type="button" className="footbar__left button button--success" onClick={this._start} value="New Game"/>
                 {regretButton}
             </div>
         );

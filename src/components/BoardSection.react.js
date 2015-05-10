@@ -43,9 +43,7 @@ var BoardSection = React.createClass({
         return (
             <div className="board">
                 <div className="board__x-markers">{markerItems}</div>
-                <div className="board__content">
-                    {rowListItems}
-                </div>
+                {rowListItems}
             </div>
         );
     },
