@@ -61,10 +61,6 @@
         "test": "jest"
     },
 
-    "jest": {
-        "rootDir": "src"
-    },
-
     "browserify": {
         "transform": [
             "reactify"
