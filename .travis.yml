@@ -1,4 +1,6 @@
-before_install: npm install -g autoprefixer node-sass mkdirp browserify
+before_install:
+    - npm install -g autoprefixer node-sass mkdirp browserify
+    - npm install
 install: npm run prod
 after_install: npm test
 script: "npm test"
