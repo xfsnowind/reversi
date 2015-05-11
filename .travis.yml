@@ -1,5 +1,5 @@
 before_install: npm install -g autoprefixer node-sass mkdirp browserify
 install: npm install
 after_install: npm run test
-script: "npm run prod"
+script: "npm test"
 language: javascript
