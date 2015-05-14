@@ -5,7 +5,7 @@ describe("FlipperSection", function() {
         var FlipperSection = require('../src/components/FlipperSection.react.js');
         var TestUtils = React.addons.TestUtils;
 
-        var flipperSection = TestUtils.renderIntoDocument(<FlipperSection player="WHITE" flipped={true} />);
+        var flipperSection = TestUtils.renderIntoDocument(<FlipperSection player="WHITE" />);
         var flipperWhiteNode = TestUtils.findRenderedDOMComponentWithClass(flipperSection, 'flipper__white');
         expect(flipperWhiteNode.getDOMNode().className).toEqual("flipper__piece flipper__white flipper__front");
     });

@@ -10,21 +10,10 @@ function hasPiece(value) {
 }
 
 var PieceSection = React.createClass({
-    getInitialState: function() {
-        return {flipped: false};
-    },
-
-    componentWillReceiveProps: function(nextProps) {
-        if (hasPiece(this.props.player) &&
-            !Immutable.is(nextProps.player, this.props.player)) {
-            this.setState({flipped: !this.state.flipped});
-        }
-    },
-
     render: function() {
         if (hasPiece(this.props.player)) {
             return (
-                <FlipperSection player={this.props.player} flipped={this.state.flipped} />
+                <FlipperSection player={this.props.player} />
             );
         } else {
             return false;
