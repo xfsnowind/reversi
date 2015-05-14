@@ -6,8 +6,8 @@ var FlipperSection = React.createClass({
 
         return (
             <div className="flipper">
-                <div className={"filpper__piece flipper__white " + (player == "white" ? "flipper__front" : "flipper__back")}> </div>
-                <div className={"filpper__piece flipper__black " + (player == "black" ? "flipper__front" : "flipper__back")}> </div>
+                <div className={"flipper__piece flipper__white " + (player == "white" ? "flipper__front" : "flipper__back")}> </div>
+                <div className={"flipper__piece flipper__black " + (player == "black" ? "flipper__front" : "flipper__back")}> </div>
             </div>
         );
     }
