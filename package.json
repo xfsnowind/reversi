@@ -58,13 +58,12 @@
         "dev": "parallelshell \"npm run server -s\" \"npm run live-reload -s\" \"npm run watch -s\"",
         "prod": "npm run prod:js && npm run prod:css",
 
-
         "test": "jest"
     },
 
     "jest": {
         "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
-        "unmockedModulePathPatterns": ["react"]
+        "unmockedModulePathPatterns": ["react", "immutable", "keymirror", "object-assign", "events", "lazy.js", "flux", "react-tools"]
     },
 
     "browserify": {

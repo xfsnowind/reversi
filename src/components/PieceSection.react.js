@@ -6,7 +6,7 @@ var React = require("react"),
 
 function hasPiece(value) {
     return Immutable.is(value, GridStatus.get("WHITE")) ||
-           Immutable.is(value, GridStatus.get("BLACK"))
+           Immutable.is(value, GridStatus.get("BLACK"));
 }
 
 var PieceSection = React.createClass({

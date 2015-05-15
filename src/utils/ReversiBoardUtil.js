@@ -122,8 +122,7 @@ var BoardUtil = {
             }
         }
         return BoardUtil.fillPieces(board, availableGrids);
-    },
-
+    }
 };
 
 module.exports = BoardUtil;
