@@ -22,10 +22,18 @@ var _player = null,
 function init() {
     var rowColLength = SettingsStore.getRowColumnLength(),
         halfRowColLength = rowColLength / 2,
-        initPieces = [{row: halfRowColLength - 1, col: halfRowColLength - 1, value: WHITE},
-                      {row: halfRowColLength,     col: halfRowColLength - 1, value: BLACK},
-                      {row: halfRowColLength - 1, col: halfRowColLength,     value: BLACK},
-                      {row: halfRowColLength,     col: halfRowColLength,     value: WHITE}];
+        initPieces = [{row: halfRowColLength - 1,
+                       col: halfRowColLength - 1,
+                       value: WHITE},
+                      {row: halfRowColLength,
+                       col: halfRowColLength - 1,
+                       value: BLACK},
+                      {row: halfRowColLength - 1,
+                       col: halfRowColLength,
+                       value: BLACK},
+                      {row: halfRowColLength,
+                       col: halfRowColLength,
+                       value: WHITE}];
     _player = WHITE;
     _board = [];
     _history = Immutable.fromJS([]);
@@ -142,7 +150,7 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             break;
 
         case ActionTypes.get("START_THREAD"):
-            init();
+            BoardStore.init();
             BoardStore.emitChange();
             break;
 

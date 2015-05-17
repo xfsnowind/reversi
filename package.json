@@ -31,7 +31,7 @@
         "object-assign": "^2.0.0",
         "keymirror": "^0.1.1",
         "flux": "^2.0.1",
-        "lazy.js": "^0.4.0",
+        "lodash": "^3.8.0",
         "immutable": "^3.7.1"
     },
 
@@ -63,7 +63,7 @@
 
     "jest": {
         "scriptPreprocessor": "<rootDir>/src/preprocessor.js",
-        "unmockedModulePathPatterns": ["react", "immutable", "keymirror", "object-assign", "events", "lazy.js", "flux", "react-tools"]
+        "unmockedModulePathPatterns": ["react", "immutable", "keymirror", "object-assign", "events", "lodash", "flux", "react-tools"]
     },
 
     "browserify": {

@@ -1,5 +1,5 @@
 var Immutable = require("immutable"),
-    Lazy = require("lazy.js"),
+    lodash = require("lodash"),
     SettingsStore = require("../stores/SettingsStore"),
     Constants = require("../constants/ReversiConstants"),
     Direction = Constants.get("Direction"),
@@ -27,8 +27,8 @@ var BoardUtil = {
         }, board);
     },
 
-    verifyGridStatus: function(grid, status) {
-        return Immutable.is(grid.get("value"), status);
+    verifyGridStatus: function(grid, value) {
+        return grid.get("value") === value;
     },
 
     isGridLegal: function(row, col) {
@@ -99,13 +99,13 @@ var BoardUtil = {
                 }
             }
         }
-        return Lazy(availableGrids).compact().uniq().value();
+        return lodash(availableGrids).compact().uniq();
     },
 
     /* Get the grids those should be reversed and reverse them. */
     reverseGrids: function(piece, board, player) {
         var reversedGrids = BoardUtil.getAvailableGridsGivenGrid(piece, board, player, true),
-            puredGrids = Lazy(reversedGrids).compact().uniq().value();
+            puredGrids = lodash(reversedGrids).compact().uniq();
 
         return BoardUtil.fillPieces(board, puredGrids);
     },
