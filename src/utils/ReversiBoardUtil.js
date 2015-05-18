@@ -39,9 +39,10 @@ var BoardUtil = {
         return false;
     },
 
+    /* This */
     checkReverseDirection: function(grid, board, player, direction, returnGrid) {
-        var row = grid.get("row") - direction.row,
-            col = grid.get("col") - direction.col;
+        var row = grid.get("row") - direction.get("row"),
+            col = grid.get("col") - direction.get("col");
 
         if (BoardUtil.isGridLegal(row, col)) {
             var reverseDirectionGrid = board.getIn([row, col]);
@@ -64,8 +65,8 @@ var BoardUtil = {
     },
 
     getAvailableGridsGivenDirection: function(grid, board, player, direction, ifReverse) {
-        var row = grid.get("row") + direction.row,
-            col = grid.get("col") + direction.col,
+        var row = grid.get("row") + direction.get("row"),
+            col = grid.get("col") + direction.get("col"),
             directionGrid = board.getIn([row, col]);
 
         if (ifReverse) {

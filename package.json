@@ -58,7 +58,7 @@
         "dev": "parallelshell \"npm run server -s\" \"npm run live-reload -s\" \"npm run watch -s\"",
         "prod": "npm run prod:js && npm run prod:css",
 
-        "test": "jest"
+        "test": "jest --coverage"
     },
 
     "jest": {
