@@ -1,5 +1,5 @@
 var React = require("react"),
-    Lazy = require("lazy.js"),
+    lodash = require("lodash"),
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
     SettingsStore = require("../stores/SettingsStore"),
@@ -29,11 +29,10 @@ var BoardSection = React.createClass({
         var board = this.state.data.get("board"),
             rowColLength = SettingsStore.getRowColumnLength(),
             i = 0,
-            markerItems = Lazy(markers).take(rowColLength)
-                                       .map(function(a) {
-                                           return <div key={"x-marker" + a} className="board__x-marker">{a.toUpperCase()}</div>;
-                                       })
-                                       .value(),
+            markerItems = lodash.take(markers, rowColLength)
+                                .map(function(a) {
+                                    return <div key={"x-marker" + a} className="board__x-marker">{a.toUpperCase()}</div>;
+                                }),
             rowListItems = board.map(function(row) {
                 i++;
                 return <RowSection row={row} id={i} key={"row" + row.getIn([0, "row"])} />;
