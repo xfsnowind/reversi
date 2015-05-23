@@ -62,7 +62,7 @@ var BoardUtil = {
         return [];
     },
 
-    /* This */
+    // check if the grid on the direction is available
     checkReverseDirectionAvailable: function(grid, board, player, direction) {
         var row = grid.get("row") - direction.get("row"),
             col = grid.get("col") - direction.get("col");
@@ -93,14 +93,6 @@ var BoardUtil = {
         }
     },
 
-    getReversableGridsGivenDirection: function(grid, board, player, direction) {
-        var row = grid.get("row") + direction.get("row"),
-            col = grid.get("col") + direction.get("col"),
-            directionGrid = board.getIn([row, col]);
-
-        return BoardUtil.flipGridsOnReversedDirection(grid, board, player, direction, []);
-    },
-
     getAvailableGridsGivenGrid: function(grid, board, player) {
         return Direction.reduce(function(availableGrids, direction) {
             return availableGrids.concat(BoardUtil.getAvailableGridsGivenDirection(grid, board, player, direction));
@@ -109,7 +101,7 @@ var BoardUtil = {
 
     getReversableGrids: function(grid, board, player) {
         return Direction.reduce(function(availableGrids, direction) {
-            return availableGrids.concat(BoardUtil.getReversableGridsGivenDirection(grid, board, player, direction));
+            return availableGrids.concat(BoardUtil.flipGridsOnReversedDirection(grid, board, player, direction, []));
         }, []);
     },
 

@@ -237,93 +237,111 @@ describe("ReversiBoardUtil", function() {
                                                             "BLACK",
                                                             DIRECTION.get("DOWN_RIGHT"))).toEqual(false);
         });
+    });
 
-        it("return an array grids if there exists the grid whose value is same with player on reversed direction with given direction", function() {
-            var result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 3}),
+    describe("flipGridsOnReversedDirection", function() {
+        describe("return an array grids if there exists the grid whose value is same with player on reversed direction with direction", function() {
+            var result, expectedResult;
+
+            it("UP", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 3}),
                                                                 filledBoard,
                                                                 "WHITE",
                                                                 DIRECTION.get("UP"),
-                                                                []),
+                                                                []);
                 expectedResult = [Immutable.fromJS({row: 4, col: 3, value: "WHITE"}),
                                   Immutable.fromJS({row: 5, col: 3, value: "WHITE"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 6, col: 3}),
-                                                            filledBoard,
-                                                            "WHITE",
-                                                            DIRECTION.get("DOWN"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 5, col: 3, value: "WHITE"}),
-                              Immutable.fromJS({row: 4, col: 3, value: "WHITE"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+            it("DOWN", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 6, col: 3}),
+                                                                filledBoard,
+                                                                "WHITE",
+                                                                DIRECTION.get("DOWN"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 5, col: 3, value: "WHITE"}),
+                                  Immutable.fromJS({row: 4, col: 3, value: "WHITE"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 3}),
-                                                            filledBoard,
-                                                            "WHITE",
-                                                            DIRECTION.get("LEFT"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 3, col: 4, value: "WHITE"}),
-                              Immutable.fromJS({row: 3, col: 5, value: "WHITE"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+            it("LEFT", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 3}),
+                                                                filledBoard,
+                                                                "WHITE",
+                                                                DIRECTION.get("LEFT"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 3, col: 4, value: "WHITE"}),
+                                  Immutable.fromJS({row: 3, col: 5, value: "WHITE"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 6}),
-                                                            filledBoard,
-                                                            "WHITE",
-                                                            DIRECTION.get("RIGHT"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 3, col: 5, value: "WHITE"}),
-                              Immutable.fromJS({row: 3, col: 4, value: "WHITE"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+            it("RIGHT", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 6}),
+                                                                filledBoard,
+                                                                "WHITE",
+                                                                DIRECTION.get("RIGHT"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 3, col: 5, value: "WHITE"}),
+                                  Immutable.fromJS({row: 3, col: 4, value: "WHITE"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 4, col: 3}),
-                                                            filledBoard,
-                                                            "BLACK",
-                                                            DIRECTION.get("UP_LEFT"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 5, col: 4, value: "BLACK"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+            it("UP_LEFT", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 4, col: 3}),
+                                                                filledBoard,
+                                                                "BLACK",
+                                                                DIRECTION.get("UP_LEFT"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 5, col: 4, value: "BLACK"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 5}),
-                                                            filledBoard,
-                                                            "BLACK",
-                                                            DIRECTION.get("UP_RIGHT"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 4, col: 4, value: "BLACK"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+            it("UP_RIGHT", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 5}),
+                                                                filledBoard,
+                                                                "BLACK",
+                                                                DIRECTION.get("UP_RIGHT"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 4, col: 4, value: "BLACK"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 5, col: 3}),
-                                                            filledBoard,
-                                                            "BLACK",
-                                                            DIRECTION.get("DOWN_LEFT"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 4, col: 4, value: "BLACK"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
+            it("DOWN_LEFT", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 5, col: 3}),
+                                                                filledBoard,
+                                                                "BLACK",
+                                                                DIRECTION.get("DOWN_LEFT"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 4, col: 4, value: "BLACK"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
 
-
-            result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 6, col: 5}),
-                                                            filledBoard,
-                                                            "BLACK",
-                                                            DIRECTION.get("DOWN_RIGHT"),
-                                                            []);
-            expectedResult = [Immutable.fromJS({row: 5, col: 4, value: "BLACK"})];
-            for (var i = 0; i < result.length; i++) {
-                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            }
-
+            it("DOWN_RIGHT", function() {
+                result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 6, col: 5}),
+                                                                filledBoard,
+                                                                "BLACK",
+                                                                DIRECTION.get("DOWN_RIGHT"),
+                                                                []);
+                expectedResult = [Immutable.fromJS({row: 5, col: 4, value: "BLACK"})];
+                for (var i = 0; i < result.length; i++) {
+                    expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+                }
+            });
         });
     });
 
@@ -349,17 +367,124 @@ describe("ReversiBoardUtil", function() {
                                        {row: 6, col: 5, value: "BLACK"}]),
             filledBoard = BoardUtil.fillPieces(boardInit, pieces);
 
-            // result = BoardUtil.checkReverseDirectionAvailable(Immutable.fromJS({row: 6, col: 5}),
-            //                                          filledBoard,
-            //                                          "BLACK",
-            //                                          DIRECTION.get("DOWN_RIGHT"),
-            //                                          []);
-            // expectedResult = [Immutable.fromJS({row: 5, col: 4, value: "BLACK"})];
-            // for (var i = 0; i < result.length; i++) {
-            //     expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
-            // }
+        describe("return an array containing the grid that is available with direction", function() {
+            var result, expectedResult;
 
+            it("UP", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 3}),
+                                                                   filledBoard,
+                                                                   "WHITE",
+                                                                   DIRECTION.get("UP"));
+                expectedResult = [Immutable.fromJS({row: 2, col: 3, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
 
+            it("DOWN", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 6, col: 3}),
+                                                                   filledBoard,
+                                                                   "WHITE",
+                                                                   DIRECTION.get("DOWN"));
+                expectedResult = [Immutable.fromJS({row: 7, col: 3, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
 
+            it("LEFT", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 3}),
+                                                                   filledBoard,
+                                                                   "WHITE",
+                                                                   DIRECTION.get("LEFT"));
+                expectedResult = [Immutable.fromJS({row: 3, col: 2, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
+
+            it("RIGHT", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 6}),
+                                                                   filledBoard,
+                                                                   "WHITE",
+                                                                   DIRECTION.get("RIGHT"));
+                expectedResult = [Immutable.fromJS({row: 3, col: 7, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
+
+            it("UP_LEFT", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 4, col: 3}),
+                                                                   filledBoard,
+                                                                   "BLACK",
+                                                                   DIRECTION.get("UP_LEFT"));
+                expectedResult = [Immutable.fromJS({row: 3, col: 2, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
+
+            it("UP_RIGHT", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 5}),
+                                                                   filledBoard,
+                                                                   "BLACK",
+                                                                   DIRECTION.get("UP_RIGHT"));
+                expectedResult = [Immutable.fromJS({row: 2, col: 6, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
+
+            it("DOWN_LEFT", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 5, col: 3}),
+                                                                   filledBoard,
+                                                                   "BLACK",
+                                                                   DIRECTION.get("DOWN_LEFT"));
+                expectedResult = [Immutable.fromJS({row: 6, col: 2, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
+
+            it("DOWN_RIGHT", function() {
+                result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 6, col: 5}),
+                                                                   filledBoard,
+                                                                   "BLACK",
+                                                                   DIRECTION.get("DOWN_RIGHT"));
+                expectedResult = [Immutable.fromJS({row: 7, col: 6, value: "AVAILABLE"})];
+                expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
+            });
+        });
+    });
+
+    describe("getAvailableGridsGivenGrid", function() {
+        /*          0   00000000
+         *          1   00000000
+         *          2   00000000
+         *          3   000wbbw0
+         *          4   000bw000
+         *          5   000bw000
+         *          6   000wbb00
+         *          7   00000000*/
+        var pieces = Immutable.fromJS([{row: 3, col: 3, value: "WHITE"},
+                                       {row: 3, col: 4, value: "BLACK"},
+                                       {row: 3, col: 5, value: "BLACK"},
+                                       {row: 3, col: 6, value: "WHITE"},
+                                       {row: 4, col: 3, value: "BLACK"},
+                                       {row: 4, col: 4, value: "WHITE"},
+                                       {row: 5, col: 3, value: "BLACK"},
+                                       {row: 5, col: 4, value: "WHITE"},
+                                       {row: 6, col: 3, value: "WHITE"},
+                                       {row: 6, col: 4, value: "BLACK"},
+                                       {row: 6, col: 5, value: "BLACK"}]),
+            filledBoard = BoardUtil.fillPieces(boardInit, pieces);
+
+        it("return an array containing the grid that is available with given grid", function() {
+            var result, expectedResult;
+            result = BoardUtil.getAvailableGridsGivenGrid(Immutable.fromJS({row: 3, col: 3}),
+                                                          filledBoard,
+                                                          "BLACK");
+            expectedResult = [Immutable.fromJS({row: 2, col: 3, value: "AVAILABLE"}),
+                              undefined,
+                              Immutable.fromJS({row: 3, col: 2, value: "AVAILABLE"}),
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined,
+                              undefined];
+            for (var i = 0; i < result.length; i++) {
+                expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
+            }
+        });
+
+        it("return an array containing the grid that is available with given grid", function() {
+        });
     });
 });
