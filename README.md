@@ -1,4 +1,4 @@
-# Reversi [![Travis CI status](https://api.travis-ci.org/xfsnowind/reversi.png)](http://travis-ci.org/xfsnowind/reveris)
+# Reversi [![Travis CI status](https://api.travis-ci.org/xfsnowind/reversi.png)](https://travis-ci.org/xfsnowind/reversi/builds)
 
 ![Reversi](https://github.com/xfsnowind/reversi/raw/master/reversi.png)
 
