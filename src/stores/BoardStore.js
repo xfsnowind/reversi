@@ -135,6 +135,7 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             _board = BoardUtil.reverseGrids(content, _board, _player);
 
             _player = BoardUtil.changePlayer(_player);
+
             var availableGrids = BoardUtil.allAvailableGrids(_board, _player);
             if (availableGrids.length === 0) {
                 _player = BoardUtil.changePlayer(_player);
