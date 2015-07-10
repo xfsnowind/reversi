@@ -1,7 +1,7 @@
 var React = require("react"),
     Immutable = require("immutable"),
     FlipperSection = require("./FlipperSection.react"),
-    GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
+    GridStatus = require("../../constants/ReversiConstants").get("GridStatus"),
     BoardStore = require("../stores/BoardStore");
 
 function getStateFromStores() {

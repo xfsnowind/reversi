@@ -33,33 +33,34 @@
     },
 
     "dependencies": {
-        "react":         "^0.13.3",
-        "object-assign": "^3.0.0",
-        "keymirror":     "^0.1.1",
-        "flux":          "^2.0.3",
-        "lodash":        "^3.10.0",
-        "immutable":     "^3.7.4"
+        "react":           "^0.13.3",
+        "object-assign":   "^3.0.0",
+        "keymirror":       "^0.1.1",
+        "flux":            "^2.0.3",
+        "lodash":          "^3.10.0",
+        "immutable":       "^3.7.4"
     },
 
     "scripts": {
         "env":         "env",
-        "clean":       "rimraf build/css/*.css build/js/*.js src/styles/__config.scss",
+        "clean":       "rimraf build/css/*.css build/js/*.js src/scss/__config.scss",
 
-        "json-scss":   "json-sass -i src/constants/Config.json -o src/styles/__config.scss -p \"\\$config: \"",
-        "build:css":   "mkdirp build/css && npm run json-scss && node-sass --include-path src/styles < src/styles/main.scss | postcss -u autoprefixer > build/css/reversi.css",
-        "build:js":    "mkdirp build/js && browserify src/app.js --outfile build/js/reversi.js",
-        "build":       "npm run build:js && npm run build:css",
+        "build:dir":   "mkdirp build/css && mkdirp build/js",
+        "json-scss":   "json-sass -i src/constants/Config.json -o src/scss/__config.scss -p \"\\$config: \"",
+        "build:css":   "node-sass --include-path src/scss < src/scss/main.scss | postcss -u autoprefixer > build/css/reversi.css",
+        "build:js":    "browserify src/js/app.js --outfile build/js/reversi.js",
+        "build":       "npm run build:dir && npm run build:js && npm run json-scss && npm run build:css",
 
-        "watch:js":    "watch \"npm run build:js\" src/",
-        "watch:css":   "watch \"npm run build:css\" src/styles/",
+        "watch:js":    "watch \"npm run build:js\" src/js",
+        "watch:css":   "watch \"npm run build:css\" src/scss/",
         "watch":       "parallelshell \"npm run watch:js\" \"npm run watch:css\"",
 
         "live-reload": "live-reload --port 9091 build/",
         "server":      "http-server -p 9090 build/",
 
 
-        "prod:css":    "mkdirp deploy/css && npm run json-scss && node-sass --include-path src/styles < src/styles/main.scss | postcss -u autoprefixer | cssmin > deploy/css/reversi.css",
-        "prod:js":     "mkdirp deploy/js && browserify src/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=SIMPLE_OPTIMIZATIONS > deploy/js/reversi.js",
+        "prod:css":    "mkdirp deploy/css && npm run json-scss && node-sass --include-path src/scss < src/scss/main.scss | postcss -u autoprefixer | cssmin > deploy/css/reversi.css",
+        "prod:js":     "mkdirp deploy/js && browserify src/js/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=SIMPLE_OPTIMIZATIONS > deploy/js/reversi.js",
 
 
         "dev":         "parallelshell \"npm run server -s\" \"npm run live-reload -s\" \"npm run watch -s\"",

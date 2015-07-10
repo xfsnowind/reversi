@@ -1,6 +1,6 @@
 var React = require("react"),
     Immutable = require("immutable"),
-    AVAILABLE = require("../constants/ReversiConstants").get("GridStatus").get("AVAILABLE"),
+    AVAILABLE = require("../../constants/ReversiConstants").get("GridStatus").get("AVAILABLE"),
     PlayerActionCreators = require("../actions/PlayerActionCreators"),
     PieceSection = require("./PieceSection.react");
 

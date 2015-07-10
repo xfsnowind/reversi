@@ -1,7 +1,7 @@
 var Immutable = require("immutable"),
     lodash = require("lodash"),
     SettingsStore = require("../stores/SettingsStore"),
-    Constants = require("../constants/ReversiConstants"),
+    Constants = require("../../constants/ReversiConstants"),
     Direction = Constants.get("Direction"),
     GridStatus = Constants.get("GridStatus");
 

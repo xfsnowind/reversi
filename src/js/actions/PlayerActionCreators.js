@@ -1,5 +1,5 @@
 var Dispatcher = require("../dispatcher/ReversiDispatcher"),
-    Constants = require("../constants/ReversiConstants"),
+    Constants = require("../../constants/ReversiConstants"),
     ActionTypes = Constants.get("ActionTypes");
 
 module.exports = {

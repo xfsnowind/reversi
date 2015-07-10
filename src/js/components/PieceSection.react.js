@@ -1,7 +1,7 @@
 var React = require("react"),
     Immutable = require("immutable"),
     FlipperSection = require("./FlipperSection.react"),
-    Constants = require("../constants/ReversiConstants"),
+    Constants = require("../../constants/ReversiConstants"),
     GridStatus = Constants.get("GridStatus");
 
 function hasPiece(value) {
