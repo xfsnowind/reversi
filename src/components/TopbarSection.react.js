@@ -1,5 +1,7 @@
 var React = require("react"),
     Immutable = require("immutable"),
+    FlipperSection = require("./FlipperSection.react"),
+    GridStatus = require("../constants/ReversiConstants").get("GridStatus"),
     BoardStore = require("../stores/BoardStore");
 
 function getStateFromStores() {
@@ -30,26 +32,48 @@ var TopbarSection = React.createClass({
             numBlack = this.state.data.get("numBlack"),
             player = this.state.data.get("player"),
             gameOver = this.state.data.get("gameOver"),
-            middleText;
+            middleText,
+            winner;
 
         if (gameOver) {
-            var winner = null;
             if (numWhite > numBlack) {
                 winner = "White";
             } else {
                 winner = "Black"
             }
+            player = winner;
 
-            middleText = <span className="topbar__text topbar__center">Game Over: {winner} wins!</span>;
+            middleText = "Winner";
         } else {
-            middleText = <span className="topbar__text topbar__center">Player: {player}</span>;
+            middleText = "Current Player";
         }
 
         return (
             <div className="topbar">
-                <span className="topbar__text">White: {numWhite}</span>
-                {middleText}
-                <span className="topbar__text topbar__right">Black: {numBlack}</span>
+                <div className="topbar__row">
+                    <div className="topbar__node">
+                        <div className="topbar__grid">
+                            <FlipperSection player={GridStatus.get("WHITE")} />
+                        </div>
+                    </div>
+                    <div className="topbar__node">
+                        {middleText}
+                    </div>
+                    <div className="topbar__node">
+                        <div className="topbar__grid">
+                            <FlipperSection player={GridStatus.get("BLACK")} />
+                        </div>
+                    </div>
+                </div>
+                <div className="topbar__row">
+                    <div className="topbar__node">{numWhite}</div>
+                    <div className="topbar__node">
+                        <div className="topbar__grid">
+                            <FlipperSection player={player} />
+                        </div>
+                    </div>
+                    <div className="topbar__node">{numBlack}</div>
+                </div>
             </div>
         );
     },

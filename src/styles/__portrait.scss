@@ -5,20 +5,39 @@
 
     .topbar {
         font-weight: bold;
-        padding-left: 11.1%;
-        max-width: 32.5em;
-        width: 88.9%;
-        height: 2em;
+        padding-left: $node-percent;
+        width: 100% - $node-percent;
+        height: 3em;
+        display: table;
+    }
 
-        .topbar__text {
-            float: left;
-            width: 33%;
-        }
+    .topbar__row {
+        display: table-row;
+    }
 
-        .topbar__right {
-            float: right;
-            width: auto;
-        }
+    .topbar__node {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .topbar__grid {
+        position: relative;
+        max-width: 3em;
+        max-height: 3em;
+        width: $node-size;
+        height: $node-size;
+        margin: 0 auto;
+    }
+
+    .topbar__text {
+        float: left;
+        width: 33%;
+    }
+
+    .topbar__right {
+        float: right;
+        width: auto;
     }
 
     .footbar {
