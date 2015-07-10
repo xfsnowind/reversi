@@ -58,7 +58,7 @@
         "server":      "http-server -p 9090 build/",
 
 
-        "prod:css":    "mkdirp deploy/css && node-sass --include-path src/styles < src/styles/main.scss | postcss -u autoprefixer | cssmin > deploy/css/reversi.css",
+        "prod:css":    "mkdirp deploy/css && npm run json-scss && node-sass --include-path src/styles < src/styles/main.scss | postcss -u autoprefixer | cssmin > deploy/css/reversi.css",
         "prod:js":     "mkdirp deploy/js && browserify src/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=SIMPLE_OPTIMIZATIONS > deploy/js/reversi.js",
 
 
