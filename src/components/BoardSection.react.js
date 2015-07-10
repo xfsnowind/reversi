@@ -31,7 +31,9 @@ var BoardSection = React.createClass({
             i = 0,
             markerItems = lodash.take(markers, rowColLength)
                                 .map(function(a) {
-                                    return <div key={"x-marker" + a} className="board__x-marker">{a.toUpperCase()}</div>;
+                                    return <div key={"x-marker" + a} className="board__x-marker">
+                                               <span>{a.toUpperCase()}</span>
+                                           </div>;
                                 }),
             rowListItems = board.map(function(row) {
                 i++;

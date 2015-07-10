@@ -1,6 +1,7 @@
 @media (orientation: landscape) {
     .sidebar {
         width: 25%;
+        max-width: 200px;
         font-weight: bold;
         margin-left: 2px;
         padding-top: 1.5 * $node-size;

@@ -1,7 +1,8 @@
 var EventEmitter = require('events').EventEmitter,
-    assign = require('object-assign');
+    assign = require('object-assign'),
+    config = require("../constants/Config.json");
 
-var _rowColLength = 8;
+var _rowColLength = config.rowColLength;
 
 var SettingsStore = assign({}, EventEmitter.prototype, {
     getRowColumnLength: function () {

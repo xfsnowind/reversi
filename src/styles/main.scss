@@ -1,3 +1,4 @@
+@import "_config";
 @import "_vars";
 @import "_button";
 @import "_portrait";
@@ -8,8 +9,4 @@
 
 .app {
     display: flex;
-
-    .content {
-        max-width: 32.5em;
-    }
 }
