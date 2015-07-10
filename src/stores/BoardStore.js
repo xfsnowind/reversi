@@ -151,7 +151,7 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
             break;
 
         case ActionTypes.get("START_THREAD"):
-            BoardStore.init();
+            init();
             BoardStore.emitChange();
             break;
 
