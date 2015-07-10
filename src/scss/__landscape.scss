@@ -4,8 +4,26 @@
         max-width: 200px;
         font-weight: bold;
         margin-left: 2px;
-        padding-top: 1.5 * $node-size;
+        margin-top: 1.5 * $node-size;
         line-height: 2em;
+        display: table;
+    }
+
+    .sidebar__row {
+        display: table-row;
+    }
+
+    .sidebar__node {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .sidebar__grid {
+        position: relative;
+        max-width: 3em;
+        max-height: 3em;
+        width: $node-size;
+        height: $node-size;
     }
 
     .topbar {

@@ -1,6 +1,8 @@
 var React = require("react"),
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
+    FlipperSection = require("./FlipperSection.react"),
+    GridStatus = require("../../constants/ReversiConstants").get("GridStatus"),
     FootbarActionCreators = require("../actions/FootbarActionCreators");
 
 function getStateFromStores() {
@@ -43,21 +45,42 @@ var SidebarSection = React.createClass({
         }
 
         if (gameOver) {
-            var winner = numWhite > numBlack ? "White" : "Black";
-            middleText = "Game Over: " + winner + " wins!";
+            player = numWhite > numBlack ? "White" : "Black";
+            middleText = "Winner";
         } else {
-            middleText = "Player: " + player;
+            middleText = "Player";
         }
 
         return (
             <div className="sidebar">
-                <div>White: {numWhite}</div>
-                <div>{middleText}</div>
-                <div>Black: {numBlack}</div>
-                <div>
+                <div className="sidebar__row">
+                    <div className="sidebar__node">
+                        <div className="sidebar__grid">
+                            <FlipperSection player={GridStatus.get("WHITE")} />
+                        </div>
+                    </div>
+                    <div className="sidebar__node">{numWhite}</div>
+                </div>
+                <div className="sidebar__row">
+                    <div className="sidebar__node">
+                        <div className="sidebar__grid">
+                            <FlipperSection player={GridStatus.get("BLACK")} />
+                        </div>
+                    </div>
+                    <div className="sidebar__node">{numBlack}</div>
+                </div>
+                <div className="sidebar__row">
+                    <div className="sidebar__node">{middleText}</div>
+                    <div className="sidebar__node">
+                        <div className="sidebar__grid">
+                            <FlipperSection player={player} />
+                        </div>
+                    </div>
+                </div>
+                <div className="sidebar__row">
                     <input type="button" className="button button--success" onClick={this._start} value="New Game"/>
                 </div>
-                <div>{regretButton}</div>
+                <div className="sidebar__row">{regretButton}</div>
             </div>
         );
     },
