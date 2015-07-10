@@ -10,36 +10,36 @@
 
     "devDependencies": {
         "live-reload":     "^1.1.0",
-        "browserify":      "^9.0.3",
+        "browserify":      "^10.2.6",
         "babelify" :       "^6.1.2",
         "closurecompiler": "^1.5.1",
-        "node-sass":       "^2.1.1",
-        "autoprefixer":    "^5.1.0",
+        "node-sass":       "^3.2.0",
+        "postcss-cli":     "^1.3.1",
         "cssmin":          "^0.4.3",
-        "rimraf":          "^2.3.2",
-        "watch":           "^0.14.0",
+        "rimraf":          "^2.4.1",
+        "watch":           "^0.16.0",
         "http-server":     "^0.8.0",
-        "parallelshell":   "^1.1.1",
-        "mkdirp":          "^0.5.0",
-        "del":             "^1.1.1",
+        "parallelshell":   "^1.2.0",
+        "mkdirp":          "^0.5.1",
+        "del":             "^1.2.0",
         "babel-jest":      "^5.3.0",
         "jest-cli":        "^0.4.0"
     },
 
     "dependencies": {
         "react":         "^0.13.3",
-        "object-assign": "^2.0.0",
+        "object-assign": "^3.0.0",
         "keymirror":     "^0.1.1",
-        "flux":          "^2.0.1",
-        "lodash":        "^3.8.0",
-        "immutable":     "^3.7.1"
+        "flux":          "^2.0.3",
+        "lodash":        "^3.10.0",
+        "immutable":     "^3.7.4"
     },
 
     "scripts": {
         "env":         "env",
         "clean":       "rimraf build/css/*.css build/js/*.js",
 
-        "build:css":   "mkdirp build/css && node-sass --include-path styles < styles/main.scss | autoprefixer > build/css/reversi.css",
+        "build:css":   "mkdirp build/css && node-sass --include-path styles < styles/main.scss | postcss -u autoprefixer > build/css/reversi.css",
         "build:js":    "mkdirp build/js && browserify src/app.js --outfile build/js/reversi.js",
         "build":       "npm run build:js && npm run build:css",
 
@@ -51,7 +51,7 @@
         "server":      "http-server -p 9090 build/",
 
 
-        "prod:css":    "mkdirp deploy/css && node-sass --include-path styles < styles/main.scss | autoprefixer | cssmin > deploy/css/reversi.css",
+        "prod:css":    "mkdirp deploy/css && node-sass --include-path styles < styles/main.scss | postcss -u autoprefixer | cssmin > deploy/css/reversi.css",
         "prod:js":     "mkdirp deploy/js && browserify src/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=SIMPLE_OPTIMIZATIONS > deploy/js/reversi.js",
 
 
@@ -77,5 +77,9 @@
 
     "browserify": {
         "transform": ["babelify"]
+    },
+
+    "autoprefixer": {
+        "browsers": "> 5%"
     }
 }
