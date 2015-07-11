@@ -32,16 +32,14 @@ var TopbarSection = React.createClass({
             numBlack = this.state.data.get("numBlack"),
             player = this.state.data.get("player"),
             gameOver = this.state.data.get("gameOver"),
-            middleText,
-            winner;
+            middleText;
 
         if (gameOver) {
             if (numWhite > numBlack) {
-                winner = "White";
+                player = GridStatus.get("White");
             } else {
-                winner = "Black"
+                player = GridStatus.get("Black");
             }
-            player = winner;
 
             middleText = "Winner";
         } else {

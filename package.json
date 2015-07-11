@@ -46,7 +46,7 @@
         "clean":       "rimraf build/css/*.css build/js/*.js src/scss/__config.scss",
 
         "build:dir":   "mkdirp build/css && mkdirp build/js",
-        "json-scss":   "json-sass -i src/constants/Config.json -o src/scss/__config.scss -p \"\\$config: \"",
+        "json-scss":   "json-sass -i src/constants/Config.json -o src/scss/__config.scss -p $config:",
         "build:css":   "node-sass --include-path src/scss < src/scss/main.scss | postcss -u autoprefixer > build/css/reversi.css",
         "build:js":    "browserify src/js/app.js --outfile build/js/reversi.js",
         "build":       "npm run build:dir && npm run build:js && npm run json-scss && npm run build:css",

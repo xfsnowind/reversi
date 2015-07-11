@@ -45,7 +45,7 @@ var SidebarSection = React.createClass({
         }
 
         if (gameOver) {
-            player = numWhite > numBlack ? "White" : "Black";
+            player = numWhite > numBlack ? GridStatus.get("White") : GridStatus.get("Black");
             middleText = "Winner";
         } else {
             middleText = "Player";
