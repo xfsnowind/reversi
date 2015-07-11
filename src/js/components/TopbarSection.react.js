@@ -36,9 +36,9 @@ var TopbarSection = React.createClass({
 
         if (gameOver) {
             if (numWhite > numBlack) {
-                player = GridStatus.get("White");
+                player = GridStatus.get("WHITE");
             } else {
-                player = GridStatus.get("Black");
+                player = GridStatus.get("BLACK");
             }
 
             middleText = "Winner";
