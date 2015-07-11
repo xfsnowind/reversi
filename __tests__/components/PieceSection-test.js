@@ -1,9 +1,9 @@
-jest.dontMock("../../src/components/PieceSection.react.js");
-jest.dontMock("../../src/components/FlipperSection.react.js");
+jest.dontMock("../../src/js/components/PieceSection.react.js");
+jest.dontMock("../../src/js/components/FlipperSection.react.js");
 jest.dontMock("../../src/constants/ReversiConstants");
 
 var React = require('react/addons'),
-    PieceSection = require('../../src/components/PieceSection.react.js'),
+    PieceSection = require('../../src/js/components/PieceSection.react.js'),
     TestUtils = React.addons.TestUtils;
 
 describe("PieceSection", function() {
