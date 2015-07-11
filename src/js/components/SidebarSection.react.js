@@ -39,9 +39,9 @@ var SidebarSection = React.createClass({
             regretButton;
 
         if (regretDisable || gameOver) {
-            regretButton = <input type="Button" className="button button--danger" onClick={this._regret} disabled="disabled" value="Regret"/>
+            regretButton = <input type="Button" className="button button--danger sidebar__button-full" onClick={this._regret} disabled="disabled" value="Regret"/>
         } else {
-            regretButton = <input type="Button" className="button button--danger" onClick={this._regret} value="Regret"/>
+            regretButton = <input type="Button" className="button button--danger sidebar__button-full" onClick={this._regret} value="Regret"/>
         }
 
         if (gameOver) {
@@ -53,34 +53,43 @@ var SidebarSection = React.createClass({
 
         return (
             <div className="sidebar">
-                <div className="sidebar__row">
-                    <div className="sidebar__node">
-                        <div className="sidebar__grid">
-                            <FlipperSection player={GridStatus.get("WHITE")} />
-                        </div>
-                    </div>
-                    <div className="sidebar__node">{numWhite}</div>
-                </div>
-                <div className="sidebar__row">
-                    <div className="sidebar__node">
-                        <div className="sidebar__grid">
-                            <FlipperSection player={GridStatus.get("BLACK")} />
-                        </div>
-                    </div>
-                    <div className="sidebar__node">{numBlack}</div>
-                </div>
-                <div className="sidebar__row">
-                    <div className="sidebar__node">{middleText}</div>
-                    <div className="sidebar__node">
-                        <div className="sidebar__grid">
-                            <FlipperSection player={player} />
-                        </div>
-                    </div>
-                </div>
-                <div className="sidebar__row">
-                    <input type="button" className="button button--success" onClick={this._start} value="New Game"/>
-                </div>
-                <div className="sidebar__row">{regretButton}</div>
+                <div className="sidebar__header"></div>
+                <table className="sidebar__content">
+                    <tbody className="sidebar__row-groups">
+                        <tr>
+                            <td>
+                                <div className="sidebar__grid">
+                                    <FlipperSection player={GridStatus.get("WHITE")} />
+                                </div>
+                            </td>
+                            <td>{numWhite}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div className="sidebar__grid">
+                                    <FlipperSection player={GridStatus.get("BLACK")} />
+                                </div>
+                            </td>
+                            <td>{numBlack}</td>
+                        </tr>
+                        <tr>
+                            <td>{middleText}</td>
+                            <td>
+                                <div className="sidebar__grid">
+                                    <FlipperSection player={player} />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2">
+                                <input type="button" className="button button--success sidebar__button-full" onClick={this._start} value="New Game"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan="2">{regretButton}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         );
     },

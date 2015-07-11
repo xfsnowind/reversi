@@ -2,12 +2,12 @@
     width: $node-percent;
     height: 100%;
     border: 1px solid black;
-    background-color: lightskyblue;
+    background-color: $cyan;
     box-sizing: border-box;
     position: relative;
 }
 
 .grid--available {
-    background-color: lightgrey;
+    background-color: $deemphasized-foreground;
 }
 

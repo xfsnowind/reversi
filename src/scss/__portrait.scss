@@ -7,18 +7,16 @@
         font-weight: bold;
         padding-left: $node-percent;
         width: 100% - $node-percent;
-        height: 3em;
-        display: table;
-    }
 
-    .topbar__row {
-        display: table-row;
-    }
+        table {
+            width: 100%;
 
-    .topbar__node {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
+            td {
+                text-align: center;
+                vertical-align: middle;
+            }
+        }
+
     }
 
     .topbar__grid {

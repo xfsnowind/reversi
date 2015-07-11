@@ -1,0 +1,86 @@
+$base03:  #002b36;
+$base02:  #073642;
+$base01:  #586e75;
+$base00:  #657b83;
+$base0:   #839496;
+$base1:   #93a1a1;
+$base2:   #eee8d5;
+$base3:   #fdf6e3;
+
+$yellow:  #b58900;
+$orange:  #cb4b16;
+$red:     #dc322f;
+$magenta: #d33682;
+$violet:  #6c71c4;
+$blue:    #268bd2;
+$cyan:    #2aa198;
+$green:   #859900;
+
+$background: $base3;
+$foreground: $base00;
+$emphasized-background: $base2;
+$emphasized-foreground: $base01;
+$deemphasized-foreground: $base1;
+
+// Dark
+// $background: $base03;
+// $foreground: $base0;
+// $emphasized-background: $base02;
+// $emphasized-foreground: $base1;
+// $deemphasized-foreground: $base00;
+
+.fill-color-transparent {
+  fill: rgba(0,0,0,0.8);
+  color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.8);
+}
+
+.fill-color-yellow {
+  fill: $yellow;
+  background-color: $yellow;
+}
+
+.fill-color-orange {
+  fill: $orange;
+  background-color: $orange;
+}
+
+.fill-color-red {
+  fill: $red;
+  background-color: $red;
+}
+
+.fill-color-magenta {
+  fill: $magenta;
+  background-color: $magenta;
+}
+
+.fill-color-violet {
+  fill: $violet;
+  background-color: $violet;
+}
+
+.fill-color-blue {
+  fill: $blue;
+  background-color: $blue;
+}
+
+.fill-color-cyan {
+  fill: $cyan;
+  background-color: $cyan;
+}
+
+.fill-color-green {
+  fill: $green;
+  background-color: $green;
+}
+
+.fill-color-error {
+  fill: $red;
+  background-color: $red;
+}
+
+.color-error {
+  color: $red;
+}
+

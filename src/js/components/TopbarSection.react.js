@@ -48,30 +48,30 @@ var TopbarSection = React.createClass({
 
         return (
             <div className="topbar">
-                <div className="topbar__row">
-                    <div className="topbar__node">
-                        <div className="topbar__grid">
-                            <FlipperSection player={GridStatus.get("WHITE")} />
-                        </div>
-                    </div>
-                    <div className="topbar__node">
-                        {middleText}
-                    </div>
-                    <div className="topbar__node">
-                        <div className="topbar__grid">
-                            <FlipperSection player={GridStatus.get("BLACK")} />
-                        </div>
-                    </div>
-                </div>
-                <div className="topbar__row">
-                    <div className="topbar__node">{numWhite}</div>
-                    <div className="topbar__node">
-                        <div className="topbar__grid">
-                            <FlipperSection player={player} />
-                        </div>
-                    </div>
-                    <div className="topbar__node">{numBlack}</div>
-                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div className="topbar__grid">
+                                <FlipperSection player={GridStatus.get("WHITE")} />
+                            </div>
+                        </td>
+                        <td>{middleText}</td>
+                        <td>
+                            <div className="topbar__grid">
+                                <FlipperSection player={GridStatus.get("BLACK")} />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{numWhite}</td>
+                        <td>
+                            <div className="topbar__grid">
+                                <FlipperSection player={player} />
+                            </div>
+                        </td>
+                        <td>{numBlack}</td>
+                    </tr>
+                </table>
             </div>
         );
     },

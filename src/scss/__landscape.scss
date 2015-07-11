@@ -1,21 +1,30 @@
 @media (orientation: landscape) {
     .sidebar {
         width: 25%;
-        max-width: 200px;
+        max-width: 20em;
         font-weight: bold;
-        margin-left: 2px;
-        margin-top: 1.5 * $node-size;
         line-height: 2em;
-        display: table;
+        background-color: $emphasized-background;
+
+        td {
+            padding: 0.25em 0.5em;
+            text-align: center;
+            vertical-align: middle;
+        }
     }
 
-    .sidebar__row {
-        display: table-row;
+    .sidebar__header {
+        background-image: url(http://2.bp.blogspot.com/-2RewSLZUzRg/U-9o6SD4M6I/AAAAAAAADIE/voax99AbRx0/s1600/14%2B-%2B1%2B.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        height: 30%;
+        max-height: 9.5em;
+        margin-bottom: 8px;
     }
 
-    .sidebar__node {
-        display: table-cell;
-        vertical-align: middle;
+    .sidebar__content {
+        margin-left: 1em;
     }
 
     .sidebar__grid {
@@ -24,6 +33,10 @@
         max-height: 3em;
         width: $node-size;
         height: $node-size;
+    }
+
+    .sidebar__button-full {
+        width: 100%;
     }
 
     .topbar {
