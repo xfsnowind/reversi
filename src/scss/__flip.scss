@@ -30,11 +30,11 @@
 
     .flipper__white {
         background: black;
-        background: radial-gradient(circle at 33% 33%, lightpink, #000);
+        background: radial-gradient(circle at 33% 33%, $base3, #000);
     }
 
     .flipper__black {
         background: black;
-        background: radial-gradient(circle at 33% 33%, #5cabff, #000);
+        background: radial-gradient(circle at 33% 33%, $base03, #000);
     }
 }

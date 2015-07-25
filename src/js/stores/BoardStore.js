@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter,
     Dispatcher = require("../dispatcher/ReversiDispatcher"),
     SettingsStore = require("./SettingsStore"),
     BoardUtil = require("../utils/ReversiBoardUtil"),
-    Constants = require("../constants/ReversiConstants"),
+    Constants = require("../../constants/ReversiConstants"),
     ActionTypes = Constants.get("ActionTypes"),
     GridStatus = Constants.get("GridStatus");
 

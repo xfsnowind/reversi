@@ -1,0 +1,46 @@
+@media (orientation: portrait) {
+    .sidebar {
+        display: none;
+    }
+
+    .topbar {
+        font-weight: bold;
+        padding-top: 1.5em;
+        padding-left: $node-percent;
+        width: 100% - $node-percent;
+
+        table {
+            width: 100%;
+
+            td {
+                text-align: center;
+                vertical-align: middle;
+            }
+        }
+
+    }
+
+    .topbar__grid {
+        position: relative;
+        max-width: 3em;
+        max-height: 3em;
+        width: $node-size;
+        height: $node-size;
+        margin: 0 auto;
+    }
+
+    .footbar {
+        margin-top: 2em;
+        max-width: 32.5em;
+        width: 100%;
+
+        .footbar__right {
+            float: right;
+        }
+
+        .footbar__left {
+            margin-left: $node-size;
+            float: left;
+        }
+    }
+}

@@ -1,14 +1,14 @@
-jest.dontMock("../../src/components/PieceSection.react");
-jest.dontMock("../../src/components/FlipperSection.react");
-jest.dontMock("../../src/components/GridSection.react");
-jest.dontMock("../../src/actions/PlayerActionCreators");
+jest.dontMock("../../src/js/components/PieceSection.react");
+jest.dontMock("../../src/js/components/FlipperSection.react");
+jest.dontMock("../../src/js/components/GridSection.react");
+jest.dontMock("../../src/js/actions/PlayerActionCreators");
 jest.dontMock("../../src/constants/ReversiConstants");
 
 describe("GridSection", function() {
     it("get right class with given grid", function() {
         var React = require('react/addons'),
             Immutable = require("immutable"),
-            GridSection = require('../../src/components/GridSection.react'),
+            GridSection = require('../../src/js/components/GridSection.react'),
             TestUtils = React.addons.TestUtils;
 
         var emptyGrid = Immutable.fromJS({"value": "EMPTY"}),

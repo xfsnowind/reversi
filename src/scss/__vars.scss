@@ -1,0 +1,4 @@
+$board-max-size: 500px;
+$node-size: 10vmin;
+$node-number: map-get($config, rowColLength);
+$node-percent: percentage(1 / (1 + $node-number));

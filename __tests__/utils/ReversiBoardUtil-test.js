@@ -1,12 +1,12 @@
 jest.dontMock("../../src/constants/ReversiConstants");
-jest.dontMock("../../src/stores/SettingsStore");
-jest.dontMock("../../src/utils/ReversiBoardUtil");
+jest.dontMock("../../src/js/stores/SettingsStore");
+jest.dontMock("../../src/js/utils/ReversiBoardUtil");
 jest.dontMock("lodash");
 
 var React = require('react/addons'),
     Immutable = require("immutable"),
-    BoardUtil = require("../../src/utils/ReversiBoardUtil"),
-    SettingsStore = require("../../src/stores/SettingsStore"),
+    BoardUtil = require("../../src/js/utils/ReversiBoardUtil"),
+    SettingsStore = require("../../src/js/stores/SettingsStore"),
     Constants = require("../../src/constants/ReversiConstants"),
     GridStatus = Constants.get("GridStatus"),
     WHITE = GridStatus.get("WHITE"),

@@ -5,3 +5,4 @@ build/js
 deploy/css
 deploy/js
 reversi.js.source
+src/scss/__config.scss

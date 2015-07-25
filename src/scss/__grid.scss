@@ -1,0 +1,13 @@
+.grid {
+    width: $node-percent;
+    height: 100%;
+    border: 1px solid black;
+    background-color: $cyan;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.grid--available {
+    background-color: $deemphasized-foreground;
+}
+

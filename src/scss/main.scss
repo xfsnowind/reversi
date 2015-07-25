@@ -1,0 +1,28 @@
+@import "_config";
+@import "_colors";
+@import "_vars";
+@import "_button";
+@import "_portrait";
+@import "_landscape";
+@import "_board";
+@import "_grid";
+@import "_flip";
+
+html {
+    background: $background;
+    color: $foreground;
+}
+
+body {
+    margin: 0;
+    font-family: "RobotoDraft","Roboto","Helvetica Neue, Helvetica, Arial",sans-serif;
+    font-style: normal;
+}
+
+html, body, #reversi, .app {
+    height: 100%;
+}
+
+.app {
+    display: flex;
+}

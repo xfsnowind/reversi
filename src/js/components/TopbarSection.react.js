@@ -1,5 +1,7 @@
 var React = require("react"),
     Immutable = require("immutable"),
+    FlipperSection = require("./FlipperSection.react"),
+    GridStatus = require("../../constants/ReversiConstants").get("GridStatus"),
     BoardStore = require("../stores/BoardStore");
 
 function getStateFromStores() {
@@ -33,23 +35,43 @@ var TopbarSection = React.createClass({
             middleText;
 
         if (gameOver) {
-            var winner = null;
             if (numWhite > numBlack) {
-                winner = "White";
+                player = GridStatus.get("WHITE");
             } else {
-                winner = "Black"
+                player = GridStatus.get("BLACK");
             }
 
-            middleText = <span className="topbar__text topbar__center">Game Over: {winner} wins!</span>;
+            middleText = "Winner";
         } else {
-            middleText = <span className="topbar__text topbar__center">Player: {player}</span>;
+            middleText = "Current Player";
         }
 
         return (
             <div className="topbar">
-                <span className="topbar__text">White: {numWhite}</span>
-                {middleText}
-                <span className="topbar__text topbar__right">Black: {numBlack}</span>
+                <table>
+                    <tr>
+                        <td>
+                            <div className="topbar__grid">
+                                <FlipperSection player={GridStatus.get("WHITE")} />
+                            </div>
+                        </td>
+                        <td>{middleText}</td>
+                        <td>
+                            <div className="topbar__grid">
+                                <FlipperSection player={GridStatus.get("BLACK")} />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{numWhite}</td>
+                        <td>
+                            <div className="topbar__grid">
+                                <FlipperSection player={player} />
+                            </div>
+                        </td>
+                        <td>{numBlack}</td>
+                    </tr>
+                </table>
             </div>
         );
     },
