@@ -1,10 +1,13 @@
 var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Immutable = require("immutable"),
     AVAILABLE = require("../../constants/ReversiConstants").get("GridStatus").get("AVAILABLE"),
     PlayerActionCreators = require("../actions/PlayerActionCreators"),
     PieceSection = require("./PieceSection.react");
 
 var GridSection = React.createClass({
+
+    mixins: [PureRenderMixin],
 
     render: function() {
         var className = "grid";

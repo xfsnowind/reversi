@@ -1,4 +1,5 @@
 var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     lodash = require("lodash"),
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
@@ -12,6 +13,8 @@ function getStateFromStores() {
 var markers = "abcdefghijklmnopqrstuvwxyz";
 
 var BoardSection = React.createClass({
+
+    mixins: [PureRenderMixin],
 
     getInitialState: function() {
         return getStateFromStores();

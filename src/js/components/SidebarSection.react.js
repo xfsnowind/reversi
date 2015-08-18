@@ -1,4 +1,5 @@
 var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
     FlipperSection = require("./FlipperSection.react"),
@@ -16,6 +17,8 @@ function getStateFromStores() {
 }
 
 var SidebarSection = React.createClass({
+
+    mixins: [PureRenderMixin],
 
     getInitialState: function() {
         return getStateFromStores();
