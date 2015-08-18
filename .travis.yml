@@ -2,4 +2,6 @@ before_install:
     - npm install
     - npm test
 script: "npm run prod"
-language: javascript
+language: node_js
+node_js:
+  - "0.10"
