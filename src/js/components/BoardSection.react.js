@@ -1,6 +1,5 @@
 var React = require("react"),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    lodash = require("lodash"),
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
     SettingsStore = require("../stores/SettingsStore"),
@@ -32,12 +31,13 @@ var BoardSection = React.createClass({
         var board = this.state.data.get("board"),
             rowColLength = SettingsStore.getRowColumnLength(),
             i = 0,
-            markerItems = lodash.take(markers, rowColLength)
-                                .map(function(a) {
-                                    return <div key={"x-marker" + a} className="board__x-marker">
-                                               <span>{a.toUpperCase()}</span>
-                                           </div>;
-                                }),
+            markerItems = markers.substring(0, rowColLength)
+                                 .split("")
+                                 .map(function(a) {
+                                     return <div key={"x-marker" + a} className="board__x-marker">
+                                                <span>{a.toUpperCase()}</span>
+                                            </div>;
+                                 }),
             rowListItems = board.map(function(row) {
                 i++;
                 return <RowSection row={row} id={i} key={"row" + row.getIn([0, "row"])} />;

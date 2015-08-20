@@ -1,7 +1,6 @@
 jest.dontMock("../../src/constants/ReversiConstants");
 jest.dontMock("../../src/js/stores/SettingsStore");
 jest.dontMock("../../src/js/utils/ReversiBoardUtil");
-jest.dontMock("lodash");
 
 var React = require('react/addons'),
     Immutable = require("immutable"),
