@@ -1,6 +1,5 @@
 var React = require("react"),
     PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require("immutable"),
     GridSection = require("./GridSection.react");
 
 var RowSection = React.createClass({
