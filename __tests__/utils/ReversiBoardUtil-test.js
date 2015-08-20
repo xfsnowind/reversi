@@ -1,7 +1,6 @@
 jest.dontMock("../../src/constants/ReversiConstants");
 jest.dontMock("../../src/js/stores/SettingsStore");
 jest.dontMock("../../src/js/utils/ReversiBoardUtil");
-jest.dontMock("lodash");
 
 var React = require('react/addons'),
     Immutable = require("immutable"),
@@ -518,10 +517,15 @@ describe("ReversiBoardUtil", function() {
     describe("allAvailableGrids", function() {
         it("return an array containing the grid that is available in the board", function() {
             var result = BoardUtil.allAvailableGrids(testBoard, "WHITE"),
-                expectedResult = [Immutable.fromJS({row: 4, col: 3, value: "WHITE"}),
-                                  Immutable.fromJS({row: 5, col: 3, value: "WHITE"}),
-                                  Immutable.fromJS({row: 3, col: 4, value: "WHITE"}),
-                                  Immutable.fromJS({row: 3, col: 5, value: "WHITE"})];
+                expectedResult = [Immutable.fromJS({ "row": 2, "col": 4, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 2, "col": 6, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 4, "col": 2, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 3, "col": 2, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 5, "col": 2, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 6, "col": 2, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 7, "col": 4, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 6, "col": 6, "value": "AVAILABLE" }),
+                                  Immutable.fromJS({ "row": 7, "col": 6, "value": "AVAILABLE" })];
             for (var i = 0; i < result.length; i++) {
                 expect(Immutable.is(result[i], expectedResult[i])).toEqual(true);
             }

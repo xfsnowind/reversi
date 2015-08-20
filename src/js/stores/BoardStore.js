@@ -22,18 +22,18 @@ var _player = null,
 function init() {
     var rowColLength = SettingsStore.getRowColumnLength(),
         halfRowColLength = rowColLength / 2,
-        initPieces = [{row: halfRowColLength - 1,
-                       col: halfRowColLength - 1,
-                       value: WHITE},
-                      {row: halfRowColLength,
-                       col: halfRowColLength - 1,
-                       value: BLACK},
-                      {row: halfRowColLength - 1,
-                       col: halfRowColLength,
-                       value: BLACK},
-                      {row: halfRowColLength,
-                       col: halfRowColLength,
-                       value: WHITE}];
+        initPieces = [{"row"   : halfRowColLength - 1,
+                       "col"   : halfRowColLength - 1,
+                       "value" : WHITE},
+                      {"row"   : halfRowColLength,
+                       "col"   : halfRowColLength - 1,
+                       "value" : BLACK},
+                      {"row"   : halfRowColLength - 1,
+                       "col"   : halfRowColLength,
+                       "value" : BLACK},
+                      {"row"   : halfRowColLength,
+                       "col"   : halfRowColLength,
+                       "value" : WHITE}];
     _player = WHITE;
     _board = [];
     _history = Immutable.fromJS([]);
@@ -42,7 +42,9 @@ function init() {
     for (var i = 0; i < rowColLength; i++) {
         var row = [];
         for (var j = 0; j < rowColLength; j++) {
-            row.push({row:i, col:j, value: GridStatus.get("EMPTY")});
+            row.push({"row"   : i,
+                      "col"   : j,
+                      "value" : GridStatus.get("EMPTY")});
         }
         _board.push(Immutable.fromJS(row));
     }

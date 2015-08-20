@@ -1,4 +1,5 @@
 var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Immutable = require("immutable"),
     BoardStore = require("../stores/BoardStore"),
     FootbarActionCreators = require("../actions/FootbarActionCreators");
@@ -11,6 +12,8 @@ function getStateFromStores() {
 }
 
 var FootbarSection = React.createClass({
+
+    mixins: [PureRenderMixin],
 
     getInitialState: function() {
         return getStateFromStores();

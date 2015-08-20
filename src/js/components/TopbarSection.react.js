@@ -1,4 +1,5 @@
 var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Immutable = require("immutable"),
     FlipperSection = require("./FlipperSection.react"),
     GridStatus = require("../../constants/ReversiConstants").get("GridStatus"),
@@ -14,6 +15,8 @@ function getStateFromStores() {
 }
 
 var TopbarSection = React.createClass({
+
+    mixins: [PureRenderMixin],
 
     getInitialState: function() {
         return getStateFromStores();

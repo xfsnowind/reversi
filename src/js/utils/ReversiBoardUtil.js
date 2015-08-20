@@ -1,5 +1,4 @@
 var Immutable = require("immutable"),
-    lodash = require("lodash"),
     SettingsStore = require("../stores/SettingsStore"),
     Constants = require("../../constants/ReversiConstants"),
     Direction = Constants.get("Direction"),
@@ -9,6 +8,16 @@ var EMPTY = GridStatus.get("EMPTY"),
     WHITE = GridStatus.get("WHITE");
 
 var BoardUtil = {
+    compact: function(array) {
+        return array.filter(function(x) {return null !== x && undefined !== x;});
+    },
+
+    unique: function(array) {
+        return array.filter(function(x, i) {
+            return array.indexOf(x) === i;
+        });
+    },
+
     changePlayer: function(player) {
         if (Immutable.is(player, WHITE)) {
             return GridStatus.get("BLACK");
@@ -119,13 +128,13 @@ var BoardUtil = {
                 }
             }
         }
-        return lodash(availableGrids).compact().uniq();
+        return BoardUtil.unique(BoardUtil.compact(availableGrids));
     },
 
     /* Get the grids those should be reversed and reverse them. */
     reverseGrids: function(piece, board, player) {
         var reversedGrids = BoardUtil.getReversableGrids(piece, board, player),
-            puredGrids = lodash(reversedGrids).compact().uniq();
+            puredGrids = BoardUtil.unique(BoardUtil.compact(reversedGrids));
 
         return BoardUtil.fillPieces(board, puredGrids);
     },

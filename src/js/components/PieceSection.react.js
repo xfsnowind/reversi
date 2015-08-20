@@ -1,4 +1,5 @@
 var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     Immutable = require("immutable"),
     FlipperSection = require("./FlipperSection.react"),
     Constants = require("../../constants/ReversiConstants"),
@@ -10,6 +11,9 @@ function hasPiece(value) {
 }
 
 var PieceSection = React.createClass({
+
+    mixins: [PureRenderMixin],
+
     render: function() {
         if (hasPiece(this.props.player)) {
             return (

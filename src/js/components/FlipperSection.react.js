@@ -1,6 +1,10 @@
-var React = require("react");
+var React = require("react"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 
 var FlipperSection = React.createClass({
+
+    mixins: [PureRenderMixin],
+
     render: function() {
        var player = this.props.player;
 

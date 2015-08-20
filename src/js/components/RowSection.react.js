@@ -1,8 +1,11 @@
 var React = require("react"),
-    Immutable = require("immutable"),
+    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
     GridSection = require("./GridSection.react");
 
 var RowSection = React.createClass({
+
+    mixins: [PureRenderMixin],
+
     render: function() {
         var columnItems = this.props.row.map(function(grid) {
                 return <GridSection grid={grid} key={grid.get("row") + ", " + grid.get("col")}/>;
