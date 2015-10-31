@@ -1,13 +1,14 @@
-var Immutable = require("immutable"),
-    SettingsStore = require("../stores/SettingsStore"),
-    Constants = require("../../constants/ReversiConstants"),
-    Direction = Constants.get("Direction"),
-    GridStatus = Constants.get("GridStatus");
+import React from 'react';
+import Immutable from 'immutable';
+import Constants from "../../constants/ReversiConstants";
+import SettingsStore from "../stores/SettingsStore";
 
-var EMPTY = GridStatus.get("EMPTY"),
-    WHITE = GridStatus.get("WHITE");
+const Direction = Constants.get("Direction"),
+      GridStatus = Constants.get("GridStatus"),
+      EMPTY = GridStatus.get("EMPTY"),
+      WHITE = GridStatus.get("WHITE");
 
-var BoardUtil = {
+const BoardUtil = {
     compact: function(array) {
         return array.filter(function(x) {return null !== x && undefined !== x;});
     },
@@ -154,4 +155,4 @@ var BoardUtil = {
     }
 };
 
-module.exports = BoardUtil;
+export default BoardUtil;

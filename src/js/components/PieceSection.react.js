@@ -1,9 +1,10 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require("immutable"),
-    FlipperSection = require("./FlipperSection.react"),
-    Constants = require("../../constants/ReversiConstants"),
-    GridStatus = Constants.get("GridStatus");
+import React from 'react';
+import Immutable from 'immutable';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import FlipperSection from "./FlipperSection.react";
+import Constants from "../../constants/ReversiConstants";
+
+var GridStatus = Constants.get("GridStatus");
 
 function hasPiece(value) {
     return Immutable.is(value, GridStatus.get("WHITE")) ||
@@ -25,4 +26,4 @@ var PieceSection = React.createClass({
     }
 });
 
-module.exports = PieceSection;
+export default PieceSection;

@@ -1,4 +1,4 @@
-var React = require("react"),
-    ReversiApp = require("./components/ReversiApp.react");
+import ReactDOM from 'react-dom';
+import ReversiApp from "./components/ReversiApp.react";
 
-React.render(<ReversiApp /> , document.getElementById('reversi'));
+ReactDOM.render(<ReversiApp /> , document.getElementById('reversi'));

@@ -1,8 +1,8 @@
-var EventEmitter = require('events').EventEmitter,
-    assign = require('object-assign'),
-    config = require("../../constants/Config.json");
+import EventEmitter from 'events';
+import assign from 'object-assign';
 
-var _rowColLength = config["rowColLength"];
+var config = require("../../constants/Config.json"),
+    _rowColLength = config["rowColLength"];
 
 var SettingsStore = assign({}, EventEmitter.prototype, {
     getRowColumnLength: function () {
@@ -10,4 +10,4 @@ var SettingsStore = assign({}, EventEmitter.prototype, {
     }
 });
 
-module.exports = SettingsStore;
+export default SettingsStore;

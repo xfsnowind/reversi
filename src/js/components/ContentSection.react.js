@@ -1,8 +1,8 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    TopbarSection = require("./TopbarSection.react"),
-    FootbarSection = require("./FootbarSection.react"),
-    BoardSection = require("./BoardSection.react");
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import TopbarSection from "./TopbarSection.react";
+import FootbarSection from "./FootbarSection.react";
+import BoardSection from "./BoardSection.react";
 
 var ContentSection = React.createClass({
 
@@ -19,4 +19,4 @@ var ContentSection = React.createClass({
     }
 });
 
-module.exports = ContentSection;
+export default ContentSection;

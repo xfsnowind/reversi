@@ -1,9 +1,9 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require("immutable"),
-    BoardStore = require("../stores/BoardStore"),
-    SettingsStore = require("../stores/SettingsStore"),
-    RowSection = require("./RowSection.react");
+import React from 'react';
+import Immutable from 'immutable';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import BoardStore from "../stores/BoardStore";
+import SettingsStore from "../stores/SettingsStore";
+import RowSection from "./RowSection.react";
 
 function getStateFromStores() {
     return {data: Immutable.Map({"board": BoardStore.getBoard()})};
@@ -57,4 +57,4 @@ var BoardSection = React.createClass({
     }
 });
 
-module.exports = BoardSection;
+export default BoardSection;

@@ -1,8 +1,9 @@
-var Dispatcher = require("../dispatcher/ReversiDispatcher"),
-    Constants = require("../../constants/ReversiConstants"),
-    ActionTypes = Constants.get("ActionTypes");
+import Constants from "../../constants/ReversiConstants";
+import Dispatcher from "../dispatcher/ReversiDispatcher";
 
-module.exports = {
+var ActionTypes = Constants.get("ActionTypes");
+
+export default {
     startGame: function() {
         Dispatcher.dispatch({
             "type": ActionTypes.get("START_THREAD")

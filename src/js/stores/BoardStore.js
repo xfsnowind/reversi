@@ -1,14 +1,14 @@
-var EventEmitter = require('events').EventEmitter,
-    Immutable = require("immutable"),
-    assign = require('object-assign'),
-    Dispatcher = require("../dispatcher/ReversiDispatcher"),
-    SettingsStore = require("./SettingsStore"),
-    BoardUtil = require("../utils/ReversiBoardUtil"),
-    Constants = require("../../constants/ReversiConstants"),
-    ActionTypes = Constants.get("ActionTypes"),
-    GridStatus = Constants.get("GridStatus");
+import EventEmitter from 'events';
+import Immutable from 'immutable';
+import assign from 'object-assign';
+import Dispatcher from "../dispatcher/ReversiDispatcher";
+import SettingsStore from "./SettingsStore";
+import BoardUtil from "../utils/ReversiBoardUtil";
+import Constants from "../../constants/ReversiConstants";
 
-var CHANGE_EVENT = "change",
+var ActionTypes = Constants.get("ActionTypes"),
+    GridStatus = Constants.get("GridStatus"),
+    CHANGE_EVENT = "change",
     WHITE = GridStatus.get("WHITE"),
     BLACK = GridStatus.get("BLACK"),
     AVAILABLE = GridStatus.get("AVAILABLE"),
@@ -173,4 +173,4 @@ BoardStore.dispatchToken = Dispatcher.register(function(action) {
 
 init();
 
-module.exports = BoardStore;
+export default BoardStore;

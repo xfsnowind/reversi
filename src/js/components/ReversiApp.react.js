@@ -1,7 +1,7 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    ContentSection = require("./ContentSection.react"),
-    SidebarSection = require("./SidebarSection.react");
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import ContentSection from "./ContentSection.react";
+import SidebarSection from "./SidebarSection.react";
 
 var ReversiApp = React.createClass({
 
@@ -16,4 +16,4 @@ var ReversiApp = React.createClass({
             );
     }
 });
-module.exports = ReversiApp;
+export default ReversiApp;

@@ -2,17 +2,19 @@ jest.dontMock("../../src/constants/ReversiConstants");
 jest.dontMock("../../src/js/stores/SettingsStore");
 jest.dontMock("../../src/js/utils/ReversiBoardUtil");
 
-var React = require('react/addons'),
-    Immutable = require("immutable"),
-    BoardUtil = require("../../src/js/utils/ReversiBoardUtil"),
-    SettingsStore = require("../../src/js/stores/SettingsStore"),
-    Constants = require("../../src/constants/ReversiConstants"),
-    GridStatus = Constants.get("GridStatus"),
-    WHITE = GridStatus.get("WHITE"),
-    BLACK = GridStatus.get("BLACK"),
-    DIRECTION = Constants.get("Direction"),
-    rowColLength = SettingsStore.getRowColumnLength(),
-    TestUtils = React.addons.TestUtils;
+import React from 'react';
+import TestUtils from "react-addons-test-utils";
+import Immutable from 'immutable';
+
+const BoardUtil = require("../../src/js/utils/ReversiBoardUtil"),
+      SettingsStore = require("../../src/js/stores/SettingsStore"),
+      GridSection = require('../../src/js/components/GridSection.react'),
+      Constants = require("../../src/constants/ReversiConstants"),
+      GridStatus = Constants.get("GridStatus"),
+      WHITE = GridStatus.get("WHITE"),
+      BLACK = GridStatus.get("BLACK"),
+      DIRECTION = Constants.get("Direction"),
+      rowColLength = SettingsStore.getRowColumnLength();
 
 var boardInit = [];
 
@@ -50,7 +52,7 @@ var pieces = Immutable.fromJS([{row: 3, col: 3, value: "WHITE"},
                                {row: 6, col: 5, value: "BLACK"}]),
     testBoard = BoardUtil.fillPieces(boardInit, pieces);
 
-describe("ReversiBoardUtil", function() {
+describe("ReversiBoardUtil", () => {
     var filledBoard = Immutable.fromJS([[{"row": 0,"col": 0,"value": "EMPTY"},
                                          {"row": 0,"col": 1,"value": "EMPTY"},
                                          {"row": 0,"col": 2,"value": "EMPTY"},
@@ -116,34 +118,34 @@ describe("ReversiBoardUtil", function() {
                                          {"row": 7,"col": 6,"value": "EMPTY"},
                                          {"row": 7,"col": 7,"value": "EMPTY"}]]);
 
-    describe("changePlayer", function() {
-        it("change player", function() {
+    describe("changePlayer", () => {
+        it("change player", () => {
             expect(BoardUtil.changePlayer(WHITE)).toEqual(BLACK);
             expect(BoardUtil.changePlayer(BLACK)).toEqual(WHITE);
         });
     });
 
-    describe("fillPiece", function() {
-        it("fill piece when given row and col are available", function() {
+    describe("fillPiece", () => {
+        it("fill piece when given row and col are available", () => {
             expect(Immutable.is(BoardUtil.fillPiece(boardInit, 2, 3, "WHITE"), filledBoard)).toEqual(true);
         });
     });
 
-    describe("fillPieces", function() {
-        it("fill pieces to board with given grids", function() {
+    describe("fillPieces", () => {
+        it("fill pieces to board with given grids", () => {
             expect(Immutable.is(BoardUtil.fillPieces(boardInit, [{row: 2, col: 3, value: "WHITE"}]), filledBoard)).toEqual(true);
         });
     });
 
-    describe("verifyGridStatus", function() {
-        it("verify grid status", function() {
+    describe("verifyGridStatus", () => {
+        it("verify grid status", () => {
             expect(BoardUtil.verifyGridStatus(Immutable.fromJS({value: "BLACK"}), BLACK)).toEqual(true);
             expect(BoardUtil.verifyGridStatus(Immutable.fromJS({value: "BLACK"}), WHITE)).toEqual(false);
         });
     });
 
-    describe("isGridLegal", function() {
-        it("is given grid legal", function() {
+    describe("isGridLegal", () => {
+        it("is given grid legal", () => {
             expect(BoardUtil.isGridLegal(2, 4)).toEqual(true);
             expect(BoardUtil.isGridLegal(-2, 4)).toEqual(false);
             expect(BoardUtil.isGridLegal(2, -4)).toEqual(false);
@@ -152,8 +154,8 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("checkReverseDirectionAvailableAvailable", function() {
-        it("return true if there exists the grid whose value is same with player on reversed direction with given direction", function() {
+    describe("checkReverseDirectionAvailableAvailable", () => {
+        it("return true if there exists the grid whose value is same with player on reversed direction with given direction", () => {
             expect(BoardUtil.checkReverseDirectionAvailable(Immutable.fromJS({row: 3, col: 3}),
                                                             testBoard,
                                                             "BLACK",
@@ -188,7 +190,7 @@ describe("ReversiBoardUtil", function() {
                                                             DIRECTION.get("DOWN_RIGHT"))).toEqual(true);
         });
 
-        it("return false if grid on the reversed direction exceed the borders", function() {
+        it("return false if grid on the reversed direction exceed the borders", () => {
             expect(BoardUtil.checkReverseDirectionAvailable(Immutable.fromJS({row: 7, col: 3}),
                                                             testBoard,
                                                             "BLACK",
@@ -240,11 +242,11 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("flipGridsOnReversedDirection", function() {
-        describe("return an array grids if there exists the grid whose value is same with player on reversed direction with direction", function() {
+    describe("flipGridsOnReversedDirection", () => {
+        describe("return an array grids if there exists the grid whose value is same with player on reversed direction with direction", () => {
             var result, expectedResult;
 
-            it("UP", function() {
+            it("UP", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 3}),
                                                                 testBoard,
                                                                 "WHITE",
@@ -257,7 +259,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("DOWN", function() {
+            it("DOWN", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 6, col: 3}),
                                                                 testBoard,
                                                                 "WHITE",
@@ -270,7 +272,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("LEFT", function() {
+            it("LEFT", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 3}),
                                                                 testBoard,
                                                                 "WHITE",
@@ -283,7 +285,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("RIGHT", function() {
+            it("RIGHT", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 6}),
                                                                 testBoard,
                                                                 "WHITE",
@@ -296,7 +298,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("UP_LEFT", function() {
+            it("UP_LEFT", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 4, col: 3}),
                                                                 testBoard,
                                                                 "BLACK",
@@ -308,7 +310,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("UP_RIGHT", function() {
+            it("UP_RIGHT", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 3, col: 5}),
                                                                 testBoard,
                                                                 "BLACK",
@@ -320,7 +322,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("DOWN_LEFT", function() {
+            it("DOWN_LEFT", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 5, col: 3}),
                                                                 testBoard,
                                                                 "BLACK",
@@ -332,7 +334,7 @@ describe("ReversiBoardUtil", function() {
                 }
             });
 
-            it("DOWN_RIGHT", function() {
+            it("DOWN_RIGHT", () => {
                 result = BoardUtil.flipGridsOnReversedDirection(Immutable.fromJS({row: 6, col: 5}),
                                                                 testBoard,
                                                                 "BLACK",
@@ -346,11 +348,11 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("getAvailableGridsGivenDirection", function() {
-        describe("return an array containing the grid that is available with direction", function() {
+    describe("getAvailableGridsGivenDirection", () => {
+        describe("return an array containing the grid that is available with direction", () => {
             var result, expectedResult;
 
-            it("UP", function() {
+            it("UP", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 3}),
                                                                    testBoard,
                                                                    "WHITE",
@@ -359,7 +361,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("DOWN", function() {
+            it("DOWN", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 6, col: 3}),
                                                                    testBoard,
                                                                    "WHITE",
@@ -368,7 +370,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("LEFT", function() {
+            it("LEFT", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 3}),
                                                                    testBoard,
                                                                    "WHITE",
@@ -377,7 +379,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("RIGHT", function() {
+            it("RIGHT", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 6}),
                                                                    testBoard,
                                                                    "WHITE",
@@ -386,7 +388,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("UP_LEFT", function() {
+            it("UP_LEFT", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 4, col: 3}),
                                                                    testBoard,
                                                                    "BLACK",
@@ -395,7 +397,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("UP_RIGHT", function() {
+            it("UP_RIGHT", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 3, col: 5}),
                                                                    testBoard,
                                                                    "BLACK",
@@ -404,7 +406,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("DOWN_LEFT", function() {
+            it("DOWN_LEFT", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 5, col: 3}),
                                                                    testBoard,
                                                                    "BLACK",
@@ -413,7 +415,7 @@ describe("ReversiBoardUtil", function() {
                 expect(Immutable.is(result[0], expectedResult[0])).toEqual(true);
             });
 
-            it("DOWN_RIGHT", function() {
+            it("DOWN_RIGHT", () => {
                 result = BoardUtil.getAvailableGridsGivenDirection(Immutable.fromJS({row: 6, col: 5}),
                                                                    testBoard,
                                                                    "BLACK",
@@ -424,8 +426,8 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("getAvailableGridsGivenGrid", function() {
-        it("return an array containing the grid that is available with given correct grid", function() {
+    describe("getAvailableGridsGivenGrid", () => {
+        it("return an array containing the grid that is available with given correct grid", () => {
             var result, expectedResult;
             result = BoardUtil.getAvailableGridsGivenGrid(Immutable.fromJS({row: 3, col: 3}),
                                                           testBoard,
@@ -458,7 +460,7 @@ describe("ReversiBoardUtil", function() {
             }
         });
 
-        it("return an array containing the grid that is available with given exceed-border grid", function() {
+        it("return an array containing the grid that is available with given exceed-border grid", () => {
             var result, expectedResult;
             result = BoardUtil.getAvailableGridsGivenGrid(Immutable.fromJS({row: 8, col: 3}),
                                                           testBoard,
@@ -484,8 +486,8 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("getReversableGrids", function() {
-        it("return an array containing the grid that is reversed according to given correct grid", function() {
+    describe("getReversableGrids", () => {
+        it("return an array containing the grid that is reversed according to given correct grid", () => {
             var result = BoardUtil.getReversableGrids(Immutable.fromJS({row: 3, col: 3}),
                                                       testBoard,
                                                       "WHITE"),
@@ -514,8 +516,8 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("allAvailableGrids", function() {
-        it("return an array containing the grid that is available in the board", function() {
+    describe("allAvailableGrids", () => {
+        it("return an array containing the grid that is available in the board", () => {
             var result = BoardUtil.allAvailableGrids(testBoard, "WHITE"),
                 expectedResult = [Immutable.fromJS({ "row": 2, "col": 4, "value": "AVAILABLE" }),
                                   Immutable.fromJS({ "row": 2, "col": 6, "value": "AVAILABLE" }),
@@ -532,8 +534,8 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("reverseGrids", function() {
-        it("With given piece, board and player, return the board that the grids has been reversed.", function() {
+    describe("reverseGrids", () => {
+        it("With given piece, board and player, return the board that the grids has been reversed.", () => {
             var result = BoardUtil.reverseGrids(Immutable.fromJS({row: 3, col: 3, value: "WHITE"}), testBoard, "WHITE"),
                 expectedResult = [Immutable.fromJS({row: 4, col: 3, value: "WHITE"}),
                                   Immutable.fromJS({row: 5, col: 3, value: "WHITE"}),
@@ -544,8 +546,8 @@ describe("ReversiBoardUtil", function() {
         });
     });
 
-    describe("clearAvailableGrids", function() {
-        it("clear all the available grids from board", function() {
+    describe("clearAvailableGrids", () => {
+        it("clear all the available grids from board", () => {
             var availableGrids = BoardUtil.allAvailableGrids(testBoard, "WHITE"),
                 boardWithAvailableGrids = BoardUtil.fillPieces(testBoard, availableGrids),
                 boardRemovedAvailableGrids = BoardUtil.clearAvailableGrids(boardWithAvailableGrids);

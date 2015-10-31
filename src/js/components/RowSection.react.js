@@ -1,6 +1,6 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    GridSection = require("./GridSection.react");
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import GridSection from "./GridSection.react";
 
 var RowSection = React.createClass({
 
@@ -22,4 +22,4 @@ var RowSection = React.createClass({
     }
 });
 
-module.exports = RowSection;
+export default RowSection;

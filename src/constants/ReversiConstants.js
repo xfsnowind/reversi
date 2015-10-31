@@ -1,7 +1,7 @@
-var Immutable = require("immutable"),
-    keyMirror = require("keymirror");
+import Immutable from "immutable";
+import keyMirror from "keymirror";
 
-module.exports = Immutable.fromJS({
+export default Immutable.fromJS({
     "GridStatus": keyMirror({
         "WHITE": null,
         "BLACK": null,

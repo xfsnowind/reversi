@@ -1,8 +1,8 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require("immutable"),
-    BoardStore = require("../stores/BoardStore"),
-    FootbarActionCreators = require("../actions/FootbarActionCreators");
+import React from 'react';
+import Immutable from 'immutable';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import FootbarActionCreators from "../actions/FootbarActionCreators";
+import BoardStore from "../stores/BoardStore";
 
 function getStateFromStores() {
     return {data: Immutable.Map({
@@ -59,4 +59,4 @@ var FootbarSection = React.createClass({
     }
 });
 
-module.exports = FootbarSection;
+export default FootbarSection;

@@ -1,13 +1,16 @@
-jest.dontMock("../../src/js/components/FlipperSection.react.js");
+jest.dontMock("../../src/js/components/FlipperSection.react");
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
+
+let FlipperSection = require('../../src/js/components/FlipperSection.react');
+
 describe("FlipperSection", function() {
     it("get right class with given player", function() {
-        var React = require('react/addons'),
-            FlipperSection = require('../../src/js/components/FlipperSection.react.js'),
-            TestUtils = React.addons.TestUtils,
-
-            flipperSection = TestUtils.renderIntoDocument(<FlipperSection player="WHITE" />),
+        let flipperSection = TestUtils.renderIntoDocument(<FlipperSection player="WHITE" />),
             flipperWhiteNode = TestUtils.findRenderedDOMComponentWithClass(flipperSection, 'flipper__white');
 
-        expect(flipperWhiteNode.getDOMNode().className).toEqual("flipper__piece flipper__white flipper__front");
+        expect(ReactDOM.findDOMNode(flipperWhiteNode).className).toEqual("flipper__piece flipper__white flipper__front");
     });
 });

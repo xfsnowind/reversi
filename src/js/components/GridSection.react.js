@@ -1,9 +1,11 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require("immutable"),
-    AVAILABLE = require("../../constants/ReversiConstants").get("GridStatus").get("AVAILABLE"),
-    PlayerActionCreators = require("../actions/PlayerActionCreators"),
-    PieceSection = require("./PieceSection.react");
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import Immutable from 'immutable';
+import Constants from "../../constants/ReversiConstants";
+import PlayerActionCreators from "../actions/PlayerActionCreators";
+import PieceSection from "./PieceSection.react";
+
+var AVAILABLE = Constants.get("GridStatus").get("AVAILABLE");
 
 var GridSection = React.createClass({
 
@@ -29,4 +31,4 @@ var GridSection = React.createClass({
     }
 });
 
-module.exports = GridSection;
+export default GridSection;

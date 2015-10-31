@@ -4,12 +4,15 @@ jest.dontMock("../../src/js/components/GridSection.react");
 jest.dontMock("../../src/js/actions/PlayerActionCreators");
 jest.dontMock("../../src/constants/ReversiConstants");
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from "react-addons-test-utils";
+import Immutable from 'immutable';
+
+const GridSection = require('../../src/js/components/GridSection.react');
+
 describe("GridSection", function() {
     it("get right class with given grid", function() {
-        var React = require('react/addons'),
-            Immutable = require("immutable"),
-            GridSection = require('../../src/js/components/GridSection.react'),
-            TestUtils = React.addons.TestUtils;
 
         var emptyGrid = Immutable.fromJS({"value": "EMPTY"}),
             whiteGrid = Immutable.fromJS({"value": "WHITE"}),
@@ -20,17 +23,17 @@ describe("GridSection", function() {
             availableGridSection = TestUtils.renderIntoDocument(<GridSection grid={availableGrid} />);
 
         var emptyGridNode = TestUtils.findRenderedDOMComponentWithClass(emptyGridSection, "grid");
-        expect(emptyGridNode.getDOMNode().className).toEqual("grid");
+        expect(ReactDOM.findDOMNode(emptyGridNode).className).toEqual("grid");
 
         var availableGridNode = TestUtils.findRenderedDOMComponentWithClass(availableGridSection, "grid");
-        expect(availableGridNode.getDOMNode().className).toEqual("grid grid--available");
+        expect(ReactDOM.findDOMNode(availableGridNode).className).toEqual("grid grid--available");
 
 
         var whiteGridNode = TestUtils.findRenderedDOMComponentWithClass(whiteGridSection, "grid"),
             flipperNode = TestUtils.scryRenderedDOMComponentsWithClass(whiteGridSection, "flipper__piece");
         expect(flipperNode.length).toEqual(2);
-        expect(flipperNode[0].getDOMNode().className).toEqual("flipper__piece flipper__white flipper__front");
-        expect(flipperNode[1].getDOMNode().className).toEqual("flipper__piece flipper__black flipper__back");
-        expect(whiteGridNode.getDOMNode().className).toEqual("grid");
+        expect(ReactDOM.findDOMNode(flipperNode[0]).className).toEqual("flipper__piece flipper__white flipper__front");
+        expect(ReactDOM.findDOMNode(flipperNode[1]).className).toEqual("flipper__piece flipper__black flipper__back");
+        expect(ReactDOM.findDOMNode(whiteGridNode).className).toEqual("grid");
     });
 });

@@ -1,5 +1,5 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+import React from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 var FlipperSection = React.createClass({
 
@@ -17,4 +17,4 @@ var FlipperSection = React.createClass({
     }
 });
 
-module.exports = FlipperSection;
+export default FlipperSection;

@@ -1,10 +1,12 @@
-var React = require("react"),
-    PureRenderMixin = require('react/addons').addons.PureRenderMixin,
-    Immutable = require("immutable"),
-    BoardStore = require("../stores/BoardStore"),
-    FlipperSection = require("./FlipperSection.react"),
-    GridStatus = require("../../constants/ReversiConstants").get("GridStatus"),
-    FootbarActionCreators = require("../actions/FootbarActionCreators");
+import React from 'react';
+import Immutable from 'immutable';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import BoardStore from "../stores/BoardStore";
+import FlipperSection from "./FlipperSection.react";
+import Constants from "../../constants/ReversiConstants";
+import FootbarActionCreators from "../actions/FootbarActionCreators";
+
+var GridStatus = Constants.get("GridStatus"),
 
 function getStateFromStores() {
     return {data: Immutable.Map({
@@ -110,4 +112,4 @@ var SidebarSection = React.createClass({
     }
 });
 
-module.exports = SidebarSection;
+export default SidebarSection;
