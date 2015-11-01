@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ContentSection from "./ContentSection.react";
 import SidebarSection from "./SidebarSection.react";
 
-var ReversiApp = React.createClass({
+const ReversiApp = React.createClass({
 
     mixins: [PureRenderMixin],
 
@@ -16,4 +16,5 @@ var ReversiApp = React.createClass({
             );
     }
 });
+
 export default ReversiApp;

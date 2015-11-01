@@ -5,7 +5,7 @@ import BoardStore from "../stores/BoardStore";
 import FlipperSection from "./FlipperSection.react";
 import Constants from "../../constants/ReversiConstants";
 
-var GridStatus = Constants.get("GridStatus"),
+var GridStatus = Constants.get("GridStatus");
 
 function getStateFromStores() {
     return {data: Immutable.Map({

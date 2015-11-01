@@ -1,12 +1,12 @@
 import React from 'react';
 import Immutable from 'immutable';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import BoardStore from "../stores/BoardStore";
-import FlipperSection from "./FlipperSection.react";
-import Constants from "../../constants/ReversiConstants";
-import FootbarActionCreators from "../actions/FootbarActionCreators";
 
-var GridStatus = Constants.get("GridStatus"),
+const BoardStore = require("../stores/BoardStore"),
+      FlipperSection = require("./FlipperSection.react"),
+      Constants = require("../../constants/ReversiConstants"),
+      FootbarActionCreators = require("../actions/FootbarActionCreators"),
+      GridStatus = Constants.get("GridStatus");
 
 function getStateFromStores() {
     return {data: Immutable.Map({

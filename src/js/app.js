@@ -1,4 +1,6 @@
+'use strict';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import ReversiApp from "./components/ReversiApp.react";
+const ReversiApp = require("./components/ReversiApp.react");
 
 ReactDOM.render(<ReversiApp /> , document.getElementById('reversi'));
