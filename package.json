@@ -63,7 +63,7 @@
 
 
         "prod:css":    "mkdirp deploy/css && npm run json-scss && node-sass --include-path src/scss < src/scss/main.scss | postcss -u autoprefixer | cssmin > deploy/css/reversi.css",
-        "prod:js":     "mkdirp deploy/js && browserify src/js/app.js | ccjs --language_in=ECMASCRIPT5 --compilation_level=ADVANCED_OPTIMIZATIONS --warning_level=QUIET > deploy/js/reversi.js",
+        "prod:js":     "mkdirp deploy/js && browserify src/js/app.js | ccjs --language_in=ECMASCRIPT6 --language_out=ES5_STRICT --compilation_level=ADVANCED_OPTIMIZATIONS --warning_level=QUIET > deploy/js/reversi.js",
 
 
         "dev":         "parallelshell \"npm run server -s\" \"npm run live-reload -s\" \"npm run watch -s\"",
